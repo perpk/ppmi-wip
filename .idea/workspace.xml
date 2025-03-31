@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa1cc71e-64b5-43ed-a4f9-0cc45af01969" name="Changes" comment="initial commit">
+    <list default="true" id="fa1cc71e-64b5-43ed-a4f9-0cc45af01969" name="Changes" comment="Include Age groups and genetic groups as observations in the h5ad output">
+      <change afterPath="$PROJECT_DIR$/ppmi-wip.deconvolution-cibersortx.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ppmi-wip.dataset_consolidation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ppmi-wip.dataset_consolidation.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppmi-wip.deconvolution.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ppmi-wip.deconvolution.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +91,7 @@
       <workItem from="1743341579525" duration="18793000" />
       <workItem from="1743421286552" duration="2453000" />
       <workItem from="1743427062561" duration="4540000" />
-      <workItem from="1743432599735" duration="1973000" />
+      <workItem from="1743432599735" duration="8583000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -99,7 +101,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743432284933</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Include Age groups and genetic groups as observations in the h5ad output">
+      <option name="closed" value="true" />
+      <created>1743434683387</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1743434683387</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -107,6 +117,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial commit" />
+    <MESSAGE value="Include Age groups and genetic groups as observations in the h5ad output" />
+    <option name="LAST_COMMIT_MESSAGE" value="Include Age groups and genetic groups as observations in the h5ad output" />
   </component>
 </project>
