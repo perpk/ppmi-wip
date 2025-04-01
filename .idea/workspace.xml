@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa1cc71e-64b5-43ed-a4f9-0cc45af01969" name="Changes" comment="Integrated deconvolution results from CIBERSORTx - visualization of cell-type proportions based on different observations.">
+    <list default="true" id="fa1cc71e-64b5-43ed-a4f9-0cc45af01969" name="Changes" comment="Playful with PCA - Check on Data and whether something groups or yet another variance driver made obvious from enriched metadata (Genetics/Ages)">
+      <change afterPath="$PROJECT_DIR$/ppmi-wip.deg-males-control-pd-baselines.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppmi-wip.deconvolution-cibersortx.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ppmi-wip.deconvolution-cibersortx.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppmi-wip.pca_analysis.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ppmi-wip.pca_analysis.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +50,9 @@
   &quot;associatedIndex&quot;: 5
 }</component>
   <component name="ProjectId" id="2v2SGNK4hO9jvqfAPI5dwzj8wR8" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -60,14 +61,14 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "<unknown>",
     "last_opened_file_path": "/Users/kpax/Documents/aep/study/MSC/lab/ppmi-wip",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "settings.editor.selected.configurable": "vcs.Git",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -90,7 +91,9 @@
       <workItem from="1743341579525" duration="18793000" />
       <workItem from="1743421286552" duration="2453000" />
       <workItem from="1743427062561" duration="4540000" />
-      <workItem from="1743432599735" duration="14184000" />
+      <workItem from="1743432599735" duration="33953000" />
+      <workItem from="1743540948529" duration="1334000" />
+      <workItem from="1743543526999" duration="182000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -116,7 +119,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743442142098</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Playful with PCA - Check on Data and whether something groups or yet another variance driver made obvious from enriched metadata (Genetics/Ages)">
+      <option name="closed" value="true" />
+      <created>1743453475971</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1743453475971</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -126,6 +137,7 @@
     <MESSAGE value="initial commit" />
     <MESSAGE value="Include Age groups and genetic groups as observations in the h5ad output" />
     <MESSAGE value="Integrated deconvolution results from CIBERSORTx - visualization of cell-type proportions based on different observations." />
-    <option name="LAST_COMMIT_MESSAGE" value="Integrated deconvolution results from CIBERSORTx - visualization of cell-type proportions based on different observations." />
+    <MESSAGE value="Playful with PCA - Check on Data and whether something groups or yet another variance driver made obvious from enriched metadata (Genetics/Ages)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Playful with PCA - Check on Data and whether something groups or yet another variance driver made obvious from enriched metadata (Genetics/Ages)" />
   </component>
 </project>
