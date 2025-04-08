@@ -12,8 +12,8 @@ output: html_notebook
 ```{r}
 setwd('/Users/kpax/Documents/aep/study/MSC/lab/PPMI_Project_133_RNASeq')
 
-counts <- read.csv("counts.csv", row.names=1)
-metadata <- read.csv("metadata.csv", row.names=1)
+counts <- read.csv("/Users/kpax/Documents/aep/study/MSC/lab/PPMI_Project_133_RNASeq/counts.csv", row.names=1)
+metadata <- read.csv("/Users/kpax/Documents/aep/study/MSC/lab/PPMI_Project_133_RNASeq/metadata.csv", row.names=1)
 ```
 
 2.  Load and filter metadata and counts

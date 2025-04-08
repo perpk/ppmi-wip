@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa1cc71e-64b5-43ed-a4f9-0cc45af01969" name="Changes" comment="WIP: Add RDataTmp to ignore">
-      <change afterPath="$PROJECT_DIR$/stratification/ppmi-wip.stratification.consolidation.ipynb" afterDir="false" />
+    <list default="true" id="fa1cc71e-64b5-43ed-a4f9-0cc45af01969" name="Changes" comment="WIP: backup commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/R-sources/ppmi-stratified/Main.R" beforeDir="false" afterPath="$PROJECT_DIR$/R-sources/ppmi-stratified/Main.R" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/R-sources/ppmi-stratified/ppmi-strat.males_70-80_BL_PD-vs-Ctrl.Rmd" beforeDir="false" afterPath="$PROJECT_DIR$/R-sources/ppmi-stratified/ppmi-strat.males_70-80_BL_PD-vs-Ctrl.Rmd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/R-sources/ppmi-stratified/ppmi-strat.males_70-80_BL_PD-vs-Ctrl.nb.html" beforeDir="false" afterPath="$PROJECT_DIR$/R-sources/ppmi-stratified/ppmi-strat.males_70-80_BL_PD-vs-Ctrl.nb.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppmi-wip.deg-males-control-pd-baselines.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ppmi-wip.deg-males-control-pd-baselines.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppmi-wip.gsea-deg-males-control-pd-baselines.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ppmi-wip.gsea-deg-males-control-pd-baselines.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppmi-wip.deconvolution-cibersortx.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ppmi-wip.deconvolution-cibersortx.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +99,7 @@
       <workItem from="1743540948529" duration="1334000" />
       <workItem from="1743543526999" duration="182000" />
       <workItem from="1743543760808" duration="60919000" />
-      <workItem from="1744019555173" duration="1710000" />
+      <workItem from="1744019555173" duration="18897000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -190,7 +189,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743934403075</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="WIP: backup commit">
+      <option name="closed" value="true" />
+      <created>1744044649746</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1744044649746</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,6 +219,7 @@
     <MESSAGE value="WIP: scRNA RBC" />
     <MESSAGE value="WIP: Age-Based Stratified DGE Analysis - Male individuals, Baseline Visits." />
     <MESSAGE value="WIP: Add RDataTmp to ignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="WIP: Add RDataTmp to ignore" />
+    <MESSAGE value="WIP: backup commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="WIP: backup commit" />
   </component>
 </project>
