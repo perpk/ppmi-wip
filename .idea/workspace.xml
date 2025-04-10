@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa1cc71e-64b5-43ed-a4f9-0cc45af01969" name="Changes" comment="Rmd's and results for stratified DGE">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ppmi-wip.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ppmi-wip.iml" afterDir="false" />
+    <list default="true" id="fa1cc71e-64b5-43ed-a4f9-0cc45af01969" name="Changes" comment="Fixes for accidentally deleted code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppmi-wip.deconvolution-cibersortx.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ppmi-wip.deconvolution-cibersortx.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/stratification/ppmi-wip.stratification.consolidation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/stratification/ppmi-wip.stratification.deg-overview.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +105,7 @@
       <workItem from="1743543760808" duration="60919000" />
       <workItem from="1744019555173" duration="22564000" />
       <workItem from="1744219074149" duration="6834000" />
-      <workItem from="1744301668093" duration="1964000" />
+      <workItem from="1744301668093" duration="5556000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -229,7 +227,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744147492063</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Fixes for accidentally deleted code">
+      <option name="closed" value="true" />
+      <created>1744303694892</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1744303694892</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -254,6 +260,7 @@
     <MESSAGE value="WIP: backup commit" />
     <MESSAGE value="t-SNE per Gender incl. Prodromal Cases" />
     <MESSAGE value="Rmd's and results for stratified DGE" />
-    <option name="LAST_COMMIT_MESSAGE" value="Rmd's and results for stratified DGE" />
+    <MESSAGE value="Fixes for accidentally deleted code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixes for accidentally deleted code" />
   </component>
 </project>
