@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa1cc71e-64b5-43ed-a4f9-0cc45af01969" name="Changes" comment="WIP: Backup commit">
-      <change afterPath="$PROJECT_DIR$/ml/classification.py" afterDir="false" />
+    <list default="true" id="fa1cc71e-64b5-43ed-a4f9-0cc45af01969" name="Changes" comment="WIP: Proper Volcano Plots">
+      <change afterPath="$PROJECT_DIR$/.idea/jupyter-settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ml/males/Age_Group_30-50/ppmi-stratified.feature.selection.males_30-50.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ml/males/Age_Group_30-50/ppmi-stratified.predict.RF.males_30-50.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ml/males/Age_Group_30-50/ppmi-stratified.predict.SVM.males_30-50.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ppmi-wip.exploratory_da.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/stratification/ppmi-wip.stratification.deg-overview.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/stratification/ppmi-wip.stratification.deg-overview.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +21,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Jupyter Notebook" />
         <option value="Python Script" />
+        <option value="Jupyter Notebook" />
       </list>
     </option>
   </component>
@@ -64,6 +67,7 @@
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "last_opened_file_path": "/Users/kpax/Documents/aep/study/MSC/lab/ppmi-wip",
     "node.js.detected.package.eslint": "true",
@@ -71,7 +75,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "PyScientificConfigurable",
+    "settings.editor.selected.configurable": "com.intellij.jupyter.core.jupyter.connections.configuration.JupyterServerConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -108,7 +112,10 @@
       <workItem from="1743543760808" duration="60919000" />
       <workItem from="1744019555173" duration="22564000" />
       <workItem from="1744219074149" duration="6834000" />
-      <workItem from="1744301668093" duration="23834000" />
+      <workItem from="1744301668093" duration="41311000" />
+      <workItem from="1744478523631" duration="1103000" />
+      <workItem from="1744480725324" duration="788000" />
+      <workItem from="1744529574416" duration="38234000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -254,7 +261,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744311891393</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="WIP: Proper Volcano Plots">
+      <option name="closed" value="true" />
+      <created>1744393320627</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1744393320627</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -282,6 +297,7 @@
     <MESSAGE value="Fixes for accidentally deleted code" />
     <MESSAGE value="DGE Plotted for stratified groups" />
     <MESSAGE value="WIP: Backup commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="WIP: Backup commit" />
+    <MESSAGE value="WIP: Proper Volcano Plots" />
+    <option name="LAST_COMMIT_MESSAGE" value="WIP: Proper Volcano Plots" />
   </component>
 </project>
