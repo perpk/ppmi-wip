@@ -4,17 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa1cc71e-64b5-43ed-a4f9-0cc45af01969" name="Changes" comment="WIP: Added XGBoost/ Feature importances for SVM">
-      <change afterPath="$PROJECT_DIR$/ml/males/Age_Group_50-70/ppmi-stratified.feature.selection.males_50-70.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ml/males/Age_Group_50-70/ppmi-stratified.predict.LR.males_50-70.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ml/males/Age_Group_50-70/ppmi-stratified.predict.RF.males_50-70.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ml/males/Age_Group_50-70/ppmi-stratified.predict.SVM.males_50-70.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ml/males/Age_Group_50-70/ppmi-stratified.predict.XGBoost.males_50-70.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="fa1cc71e-64b5-43ed-a4f9-0cc45af01969" name="Changes" comment="WIP: DEG improved">
+      <change afterPath="$PROJECT_DIR$/ml/males/Age_Group_70-80/ppmi-stratified.feature.selection.males_70-80.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/R-sources/ppmi-stratified/Main.R" beforeDir="false" afterPath="$PROJECT_DIR$/R-sources/ppmi-stratified/Main.R" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml/males/Age_Group_30-50/ppmi-stratified.predict.RF.males_30-50.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ml/males/Age_Group_30-50/ppmi-stratified.predict.RF.males_30-50.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppmi-wip.deconvolution-cibersortx.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ppmi-wip.deconvolution-cibersortx.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/stratification/ppmi-wip.stratification.deg-overview.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/stratification/ppmi-wip.stratification.deg-overview.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -73,7 +65,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/kpax/Documents/aep/study/MSC/lab/ppmi-wip/ml/males/Age_Group_50-70",
+    "last_opened_file_path": "/Users/kpax/Documents/aep/study/MSC/lab/ppmi-wip/ml/males/Age_Group_70-80",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -93,6 +85,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/ml/males/Age_Group_70-80" />
       <recent name="$PROJECT_DIR$/ml/males/Age_Group_50-70" />
     </key>
   </component>
@@ -127,7 +120,7 @@
       <workItem from="1744529574416" duration="45844000" />
       <workItem from="1744701329435" duration="8466000" />
       <workItem from="1744741525625" duration="58000" />
-      <workItem from="1745229068313" duration="33749000" />
+      <workItem from="1745229068313" duration="42263000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -305,7 +298,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744727794854</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="WIP: DEG improved">
+      <option name="closed" value="true" />
+      <created>1745667139978</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1745667139978</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -337,6 +338,7 @@
     <MESSAGE value="WIP: Feature Selection and ML w. RF and SVM" />
     <MESSAGE value="WIP: Extended example for Logistic Regression w. ROC-AUC &amp; PR / Threshold extraction example" />
     <MESSAGE value="WIP: Added XGBoost/ Feature importances for SVM" />
-    <option name="LAST_COMMIT_MESSAGE" value="WIP: Added XGBoost/ Feature importances for SVM" />
+    <MESSAGE value="WIP: DEG improved" />
+    <option name="LAST_COMMIT_MESSAGE" value="WIP: DEG improved" />
   </component>
 </project>
