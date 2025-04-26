@@ -14,6 +14,7 @@ cell_props <- read.csv("cibersortx_metadata_df.csv", row.names=1)
 
 
 rownames(metadata)
+library(tidyverse)
 
 cell_props <- cell_props %>% select(where(~ is.numeric(.) && sum(., na.rm=TRUE) > 0))
 cell_props <- cell_props[, !(names(cell_props) %in% c("RMSE", "Correlation"))]
