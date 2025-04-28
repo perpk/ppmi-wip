@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa1cc71e-64b5-43ed-a4f9-0cc45af01969" name="Changes" comment="WIP: DEG extreme log2FoldChanges GSEA">
-      <change afterPath="$PROJECT_DIR$/ml/males/Age_Group_30-50/ppmi-stratified.borda-rank.feature.selection.males_30-50.ipynb" afterDir="false" />
+    <list default="true" id="fa1cc71e-64b5-43ed-a4f9-0cc45af01969" name="Changes" comment="WIP: Borda ranking for feature selection as an alternative to intersection for consensus genes">
+      <change afterPath="$PROJECT_DIR$/ml/males/Age_Group_70-80/ppmi-stratified.predict.LR.males_70-80.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ml/males/Age_Group_over-80/ppmi-stratified.predict.LR.males_over_80.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml/males/Age_Group_30-50/Intersections_4.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ml/males/Age_Group_30-50/Intersections_4.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml/males/Age_Group_30-50/Venn_4.png" beforeDir="false" afterPath="$PROJECT_DIR$/ml/males/Age_Group_30-50/Venn_4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml/males/Age_Group_30-50/ppmi-stratified.feature.selection.males_30-50.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ml/males/Age_Group_30-50/ppmi-stratified.feature.selection.males_30-50.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ml/males/Age_Group_30-50/ppmi-stratified.predict.LR.males_30-50.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ml/males/Age_Group_30-50/ppmi-stratified.predict.LR.males_30-50.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ppmi-wip.dataset_consolidation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ppmi-wip.dataset_consolidation.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml/males/Age_Group_50-70/ppmi-stratified.predict.LR.males_50-70.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ml/males/Age_Group_50-70/ppmi-stratified.predict.LR.males_50-70.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ppmi-wip.exploratory_da.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ppmi-wip.exploratory_da.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +68,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/kpax/Documents/aep/study/MSC/lab/ppmi-wip/ml/males/Age_Group_30-50",
+    "last_opened_file_path": "/Users/kpax/Documents/aep/study/MSC/lab/ppmi-wip/ml/males/Age_Group_over-80",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -89,9 +88,9 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/ml/males/Age_Group_30-50" />
       <recent name="$PROJECT_DIR$/ml/males/Age_Group_over-80" />
       <recent name="$PROJECT_DIR$/ml/males/Age_Group_70-80" />
+      <recent name="$PROJECT_DIR$/ml/males/Age_Group_30-50" />
       <recent name="$PROJECT_DIR$/ml/males/Age_Group_50-70" />
     </key>
   </component>
@@ -128,6 +127,7 @@
       <workItem from="1744741525625" duration="58000" />
       <workItem from="1745229068313" duration="47616000" />
       <workItem from="1745752536578" duration="15347000" />
+      <workItem from="1745822096401" duration="9448000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -321,7 +321,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745680026981</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="WIP: Borda ranking for feature selection as an alternative to intersection for consensus genes">
+      <option name="closed" value="true" />
+      <created>1745822160141</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1745822160141</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -355,6 +363,7 @@
     <MESSAGE value="WIP: Added XGBoost/ Feature importances for SVM" />
     <MESSAGE value="WIP: DEG improved" />
     <MESSAGE value="WIP: DEG extreme log2FoldChanges GSEA" />
-    <option name="LAST_COMMIT_MESSAGE" value="WIP: DEG extreme log2FoldChanges GSEA" />
+    <MESSAGE value="WIP: Borda ranking for feature selection as an alternative to intersection for consensus genes" />
+    <option name="LAST_COMMIT_MESSAGE" value="WIP: Borda ranking for feature selection as an alternative to intersection for consensus genes" />
   </component>
 </project>
