@@ -25,14 +25,50 @@ design_full <- "T.cells.CD4.memory.resting + T.cells.CD4.naive + NK.cells.restin
 design_reduced <- "Monocytes + Neutrophils + Diagnosis"
 
 strata <- list(
-  list(Gender="Male", Age_Group="30-50", Visit="BL", Diagnosis=c("PD", "Control"), Design=design_full),
-  list(Gender="Male", Age_Group="50-70", Visit="BL", Diagnosis=c("PD", "Control"), Design=design_full),
-  list(Gender="Male", Age_Group="70-80", Visit="BL", Diagnosis=c("PD", "Control"), Design=design_full),
+  # list(Gender="Male", Age_Group="30-50", Visit="BL", Diagnosis=c("PD", "Control"), Design=design_full),
+  # list(Gender="Male", Age_Group="50-70", Visit="BL", Diagnosis=c("PD", "Control"), Design=design_full),
+  # list(Gender="Male", Age_Group="70-80", Visit="BL", Diagnosis=c("PD", "Control"), Design=design_full),
   list(Gender="Male", Age_Group=">80", Visit="BL", Diagnosis=c("PD", "Control"), Design=design_reduced),
-  list(Gender="Female", Age_Group="30-50", Visit="BL", Diagnosis=c("PD", "Control"), Design=design_full),
-  list(Gender="Female", Age_Group="50-70", Visit="BL", Diagnosis=c("PD", "Control"), Design=design_full),
-  list(Gender="Female", Age_Group="70-80", Visit="BL", Diagnosis=c("PD", "Control"), Design=design_full),
-  list(Gender="Female", Age_Group=">80", Visit="BL", Diagnosis=c("PD", "Control"), Design="Diagnosis")
+  # list(Gender="Female", Age_Group="30-50", Visit="BL", Diagnosis=c("PD", "Control"), Design=design_full),
+  # list(Gender="Female", Age_Group="50-70", Visit="BL", Diagnosis=c("PD", "Control"), Design=design_full),
+  # list(Gender="Female", Age_Group="70-80", Visit="BL", Diagnosis=c("PD", "Control"), Design=design_full),
+  # list(Gender="Female", Age_Group=">80", Visit="BL", Diagnosis=c("PD", "Control"), Design="Diagnosis"),
+  
+  # list(Gender="Male", Age_Group="30-50", Visit="V02", Diagnosis=c("PD", "Control"), Design=design_full),
+  # list(Gender="Male", Age_Group="50-70", Visit="V02", Diagnosis=c("PD", "Control"), Design=design_full),
+  # list(Gender="Male", Age_Group="70-80", Visit="V02", Diagnosis=c("PD", "Control"), Design=design_full),
+  list(Gender="Male", Age_Group=">80", Visit="V02", Diagnosis=c("PD", "Control"), Design="Diagnosis"),
+  # list(Gender="Female", Age_Group="30-50", Visit="V02", Diagnosis=c("PD", "Control"), Design=design_full),
+  # list(Gender="Female", Age_Group="50-70", Visit="V02", Diagnosis=c("PD", "Control"), Design=design_full),
+  # list(Gender="Female", Age_Group="70-80", Visit="V02", Diagnosis=c("PD", "Control"), Design=design_full),
+  # list(Gender="Female", Age_Group=">80", Visit="V02", Diagnosis=c("PD", "Control"), Design="Diagnosis"),
+  
+  # list(Gender="Male", Age_Group="30-50", Visit="V04", Diagnosis=c("PD", "Control"), Design=design_full),
+  # list(Gender="Male", Age_Group="50-70", Visit="V04", Diagnosis=c("PD", "Control"), Design=design_full),
+  # list(Gender="Male", Age_Group="70-80", Visit="V04", Diagnosis=c("PD", "Control"), Design=design_full),
+  list(Gender="Male", Age_Group=">80", Visit="V04", Diagnosis=c("PD", "Control"), Design="Diagnosis"),
+  # list(Gender="Female", Age_Group="30-50", Visit="V04", Diagnosis=c("PD", "Control"), Design=design_full),
+  # list(Gender="Female", Age_Group="50-70", Visit="V04", Diagnosis=c("PD", "Control"), Design=design_full),
+  # list(Gender="Female", Age_Group="70-80", Visit="V04", Diagnosis=c("PD", "Control"), Design=design_full),
+  # list(Gender="Female", Age_Group=">80", Visit="V04", Diagnosis=c("PD", "Control"), Design="Diagnosis"),
+   
+  # list(Gender="Male", Age_Group="30-50", Visit="V06", Diagnosis=c("PD", "Control"), Design=design_full),
+  # list(Gender="Male", Age_Group="50-70", Visit="V06", Diagnosis=c("PD", "Control"), Design=design_full),
+  # list(Gender="Male", Age_Group="70-80", Visit="V06", Diagnosis=c("PD", "Control"), Design=design_full),
+  list(Gender="Male", Age_Group=">80", Visit="V06", Diagnosis=c("PD", "Control"), Design="Diagnosis"),
+  # list(Gender="Female", Age_Group="30-50", Visit="V06", Diagnosis=c("PD", "Control"), Design=design_full),
+  # list(Gender="Female", Age_Group="50-70", Visit="V06", Diagnosis=c("PD", "Control"), Design=design_full),
+  # list(Gender="Female", Age_Group="70-80", Visit="V06", Diagnosis=c("PD", "Control"), Design=design_full),
+  # list(Gender="Female", Age_Group=">80", Visit="V06", Diagnosis=c("PD", "Control"), Design="Diagnosis"),
+   
+  # list(Gender="Male", Age_Group="30-50", Visit="V08", Diagnosis=c("PD", "Control"), Design=design_full),
+  # list(Gender="Male", Age_Group="50-70", Visit="V08", Diagnosis=c("PD", "Control"), Design=design_full)
+  # list(Gender="Male", Age_Group="70-80", Visit="V08", Diagnosis=c("PD", "Control"), Design=design_full)
+  list(Gender="Male", Age_Group=">80", Visit="V08", Diagnosis=c("PD", "Control"), Design="Diagnosis")
+  # list(Gender="Female", Age_Group="30-50", Visit="V08", Diagnosis=c("PD", "Control"), Design=design_full),
+  # list(Gender="Female", Age_Group="50-70", Visit="V08", Diagnosis=c("PD", "Control"), Design=design_full),
+  # list(Gender="Female", Age_Group="70-80", Visit="V08", Diagnosis=c("PD", "Control"), Design=design_full),
+  # list(Gender="Female", Age_Group=">80", Visit="V08", Diagnosis=c("PD", "Control"), Design="Diagnosis")
 )
 
 for (stratum in strata) {
@@ -62,8 +98,9 @@ results_list <- lapply(strata, function(stratum) {
   dds <- DESeq(dds)
   (dds)
 })
-results_list
 
+# View(results_list)
+names(results_list) <- sapply(strata, function(s) paste(s$Gender, s$Visit, s$Age_Group, sep="_"))
 library(tibble)
 for (i in seq_along(results_list)) {
   stratum_name <- ifelse(is.null(names(results_list)),
@@ -77,13 +114,11 @@ for (i in seq_along(results_list)) {
   write.csv(res, file=filename, row.names=FALSE)
 }
 
-names(results_list) <- sapply(strata, function(s) paste(s$Gender, s$Age_Group, sep="_"))
-results_list
-BiocManager::install("metaRNASeeq")
-library(metaRNASeq)
-pvals <- sapply(results_list, function(x) x$pvalue)
-log2FCs <- sapply(results_list, function(x) x$log2FoldChange)
-combined_pvals <- fishercomb(pvals)
+# BiocManager::install("metaRNASeeq")
+# library(metaRNASeq)
+# pvals <- sapply(results_list, function(x) x$pvalue)
+# log2FCs <- sapply(results_list, function(x) x$log2FoldChange)
+# combined_pvals <- fishercomb(pvals)
 
 #metadata_filtered <- subset(metadata, Visit == "BL" & Diagnosis %in% c("PD", "Control") & Age_Group == "50-70" & Gender == "Male")
 #counts_filtered <- counts[rownames(metadata_filtered),]
