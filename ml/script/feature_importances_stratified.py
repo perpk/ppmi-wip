@@ -67,10 +67,10 @@ def calculate_stratified_importances(gender, age_group, visit, diagnosis, case_d
     anndata_obj_subset = anndata_obj[mask]
     X_scaled, y, selected_genes = filter_data_by_variation(anndata_obj_subset, 'counts_log2', 'Diagnosis',
                                                            case_diagnosis)
-    anova_results = anova_f(X_scaled, y, selected_genes)
-    chi_square_results = chi_square(X_scaled, y, selected_genes)
-    mutual_info_results = mutual_info(X_scaled, y, selected_genes)
-    fishers_score_results = fishers_score(X_scaled, y, selected_genes)
+    anova_results = anova_f(X_scaled, y, selected_genes, 5000)
+    chi_square_results = chi_square(X_scaled, y, selected_genes, 5000)
+    mutual_info_results = mutual_info(X_scaled, y, selected_genes, 5000)
+    fishers_score_results = fishers_score(X_scaled, y, selected_genes, 5000)
     return {'ANOVA': anova_results, 'Chi-squared': chi_square_results, 'Mutual Information': mutual_info_results,
             'Fisher Score': fishers_score_results}
 
@@ -107,8 +107,11 @@ def extract_common_genes_by_borda_ranks(method_collection):
     })
 
 
-def main():
+def main(subset=False):
     ppmi_ad = ad.read_h5ad("/Users/kpax/Documents/aep/study/MSC/lab/PPMI_Project_133_RNASeq/ppmi_adata.h5ad")
+
+    if subset:
+        ppmi_ad = ppmi_ad[:, :100]
 
     visits = ['BL', 'V02', 'V04', 'V06', 'V08']
     age_groups = ['30-50', '50-70', '70-80', '>80']
@@ -116,43 +119,21 @@ def main():
 
     for gender in genders:
         for age_group in age_groups:
-            age_group_results = {}
+            consolidated_results = None
             for visit in visits:
                 print(f"Calculating stratified importances for {gender} - age group {age_group} and visit {visit}")
                 results = calculate_stratified_importances(gender, age_group, visit, ['Control', 'PD'], 'PD', ppmi_ad)
-                results_df = pd.DataFrame({method: results[method]['genes'] for method in results})
-                results_df.to_csv(
-                    f"/Users/kpax/Documents/aep/study/MSC/lab/PPMI_Project_133_RNASeq/feature_selection/stratified_importances_{gender}_{age_group}_{visit}.csv")
-                common_genes_by_intersection = extract_common_genes_by_intersection(results_df['ANOVA'],
-                                                                                    results_df['Chi-squared'],
-                                                                                    results_df['Mutual Information'],
-                                                                                    results_df['Fisher Score'])
                 common_genes_by_borda_ranks = extract_common_genes_by_borda_ranks(results)
-                age_group_results[visit] = {
-                    'Common_Intersection': common_genes_by_intersection,
-                    'Borda_Ranks': common_genes_by_borda_ranks
-                }
-
-            # Calculate union for Common_Intersection across all visits
-            common_intersection_union = pd.DataFrame({
-                "Gene": list(
-                    set().union(*[age_group_results[visit]['Common_Intersection']['Gene'] for visit in visits]))
-            })
-
-            # Calculate union for Borda_Ranks across all visits
-            borda_ranks_union = pd.DataFrame({
-                "Gene": list(set().union(*[age_group_results[visit]['Borda_Ranks']['Gene'] for visit in visits]))
-            })
-
-            # Write the union results to a single CSV file for the age group and gender
-            union_output = pd.concat(
-                [common_intersection_union.assign(Type='Common_Intersection'),
-                 borda_ranks_union.assign(Type='Borda_Ranks')]
-            )
-            union_output.to_csv(
-                f"/Users/kpax/Documents/aep/study/MSC/lab/PPMI_Project_133_RNASeq/feature_selection/union_importances_{gender}_{age_group}.csv",
-                index=False
-            )
+                common_genes_by_borda_ranks.rename(columns={"Rank": visit}, inplace=True)
+                if consolidated_results is None:
+                    consolidated_results = common_genes_by_borda_ranks.set_index("Gene")[[visit]]
+                else:
+                    consolidated_results = consolidated_results.join(
+                        common_genes_by_borda_ranks.set_index("Gene")[[visit]], how="outer"
+                    )
+            consolidated_results.to_csv(
+                f"/Users/kpax/Documents/aep/study/MSC/lab/PPMI_Project_133_RNASeq/feature_selection/borda_ranks_{gender}_{age_group}.csv",
+                index=True)
 
 
 if __name__ == '__main__':
