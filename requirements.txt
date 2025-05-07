@@ -111,3 +111,4 @@ imblearn
 sklearn-features
 matplotlib-venn
 venny4py
+shap

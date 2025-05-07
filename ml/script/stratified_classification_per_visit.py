@@ -1,3 +1,4 @@
+import joblib
 import pandas as pd
 import anndata as ad
 import numpy as np
@@ -21,6 +22,11 @@ from sklearn.preprocessing import KBinsDiscretizer, StandardScaler
 from sklearn.model_selection import GridSearchCV
 import matplotlib.pyplot as plt
 import seaborn as sns
+import shap
+from typing import Final
+import os
+
+PATH: Final = "/Users/kpax/Documents/aep/study/MSC/lab/PPMI_Project_133_RNASeq/classification/LR/"
 
 def filter_data_by_variation(anndata_object, anndata_layer, target_col, target_value, threshold=0.1):
     X = pd.DataFrame(anndata_object.layers[anndata_layer], columns=anndata_object.var_names)
@@ -80,7 +86,7 @@ def calculate_stratified_importances(anndata_obj_subset, case_diagnosis):
     fishers_score_results = fishers_score(X_scaled, y, selected_genes)
     return set(anova_results['genes']) & set(chi_square_results['genes']) & set(mutual_info_results['genes']) & set(fishers_score_results['genes'])
 
-def train_logistic_regression(anndata_obj_subset, test_size=0.2, random_state=42):
+def train_logistic_regression(anndata_obj_subset, stratum, test_size=0.2, random_state=42, run_shap=False):
     print("Training logistic regression model...")
     X = pd.DataFrame(anndata_obj_subset.layers['counts_log2'], columns=anndata_obj_subset.var_names)
     y = (anndata_obj_subset.obs['Diagnosis'] == 'PD').astype(int)
@@ -110,7 +116,7 @@ def train_logistic_regression(anndata_obj_subset, test_size=0.2, random_state=42
     grid_search = GridSearchCV(
         lr_pipeline,
         param_grid,
-        cv=StratifiedKFold(10),
+        cv=get_dynamic_stratified_kfold(y_train),
         scoring='roc_auc',
         n_jobs=-1,
         verbose=1
@@ -118,7 +124,95 @@ def train_logistic_regression(anndata_obj_subset, test_size=0.2, random_state=42
     grid_search.fit(X_train, y_train)
     best_lr = grid_search.best_estimator_
     best_lr.fit(X_train, y_train)
+
+    model_path = os.path.join(PATH + f"model_{stratum}.joblib")
+    joblib.dump({
+        'model': best_lr,
+        'X_test': X_test,
+        'y_test': y_test,
+        'features': X.columns.tolist()
+    }, model_path)
+
+    if run_shap:
+        def predict_proba_wrapper(X):
+            return best_lr.predict_proba(pd.DataFrame(X, columns=X_train.columns))
+
+        # 2. Prepare background data
+        background = X_train.iloc[:100].copy()  # First 100 samples
+
+        # 3. Use KernelExplainer with our wrapper
+        explainer = shap.KernelExplainer(
+            predict_proba_wrapper,
+            background,
+            link='logit'
+        )
+
+        # 4. Calculate SHAP values
+        shap_values = explainer.shap_values(X_test)
+
+        # 5. Store results
+        best_lr.shap_results_ = {
+            'shap_values': shap_values[1] if isinstance(shap_values, list) else shap_values,
+            'feature_importance': pd.DataFrame({
+                'Gene': X_train.columns,
+                'SHAP_importance': np.mean(np.abs(shap_values[1]), axis=0)
+            }).sort_values('SHAP_importance', ascending=False),
+            'X_test': X_test
+        }
+
+        print("SHAP analysis completed successfully!")
+
     return best_lr, X_test, y_test, lr_pipeline, X, y
+
+def generate_shap_plots(shap_values, X_test, stratum, feature_names):
+    plt.figure(figsize=(10, 6))
+    shap.summary_plot(shap_values, X_test, plot_type="bar", show=False)
+    plt.title(f"Feature Importance - {stratum}")
+    plt.tight_layout()
+    plt.savefig(PATH + f"shap_summary_{stratum}_bar.png", dpi=300)
+    plt.close()
+
+    plt.figure(figsize=(10, 6))
+    shap.summary_plot(shap_values, X_test, show=False)
+    plt.title(f"SHAP Values - {stratum}")
+    plt.tight_layout()
+    plt.savefig( PATH + f"shap_summary_{stratum}_beeswarm.png", dpi=300)
+    plt.close()
+
+    top_features = get_top_features(shap_values[:,:,1].values, feature_names, n=5)
+    for feature in top_features:
+        plt.figure()
+        shap.dependence_plot(
+            feature,
+            shap_values,
+            X_test,
+            display_features=X_test,
+            show=False
+        )
+        plt.title(f"SHAP Dependence - {feature} - {stratum}")
+        plt.tight_layout()
+        plt.savefig(PATH + f"shap_dependence_{stratum}_{feature}.png", dpi=300)
+        plt.close()
+
+def get_top_features(shap_values, feature_names, n=5):
+    mean_abs_shap = np.mean(np.abs(shap_values), axis=0)
+    top_indices = np.argsort(mean_abs_shap)[-n:][::-1]
+    return [feature_names[i] for i in top_indices]
+
+def save_feature_importance(shap_values, stratum, feature_names):
+    sv_class1 = shap_values[:, :, 1]
+
+    importance_df = pd.DataFrame({
+        'feature': feature_names,
+        'mean_abs_shap': np.mean(np.abs(sv_class1.values), axis=0),
+        'mean_shap': np.mean(sv_class1.values, axis=0),
+        'stratum': stratum,
+    }).sort_values('mean_abs_shap', ascending=False)
+
+    shap_df = pd.DataFrame(sv_class1.values, columns=feature_names)
+    shap_df.to_csv(PATH + f"shap_values_{stratum}.csv", index=False)
+
+    importance_df.to_csv(PATH + f"feature_importance_{stratum}.csv", index=False)
 
 
 def test_classifier(best_lr, X_test, y_test, result_file):
@@ -143,10 +237,16 @@ def test_classifier(best_lr, X_test, y_test, result_file):
         f.write("\n")
     return y_proba, y_pred
 
+def get_dynamic_stratified_kfold(y, default_splits=10):
+    unique, counts = np.unique(y, return_counts=True)
+    min_splits = min(counts.min(), default_splits)
+    n_splits = max(2, min_splits)
+    return StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=42)
+
 
 def run_10x_fold_validation(lr_pipeline, X, y, result_file):
     print("Running 10x fold validation...")
-    cv = StratifiedKFold(n_splits=10, shuffle=True, random_state=42)
+    cv = get_dynamic_stratified_kfold(y)
     cv_scores = {'roc_auc': [], 'pr_auc': []}
 
     for train_idx, val_idx in cv.split(X, y):
@@ -209,13 +309,13 @@ def main():
     ppmi_ad = ad.read_h5ad("/Users/kpax/Documents/aep/study/MSC/lab/PPMI_Project_133_RNASeq/ppmi_adata.h5ad")
 
     visits = ['BL', 'V02', 'V04', 'V06', 'V08']
-    age_groups = ['50-70']
-    genders = ['Male']
+    age_groups = ['30-50', '50-70', '70-80', '>80']
+    genders = ['Female']
 
     for gender in genders:
         for age_group in age_groups:
 
-            result_file = f"results_{gender}_{age_group}.txt"
+            result_file = PATH + f"results_{gender}_{age_group}.txt"
             with open(result_file, 'w') as f:
                 f.write(f"Results for Age Group: {age_group}, Gender: {gender}\n\n")
 
@@ -228,7 +328,7 @@ def main():
                 ppmi_ad_subset = ppmi_ad[mask]
                 common_genes = calculate_stratified_importances(ppmi_ad_subset, 'PD')
                 ppmi_ad_subset = ppmi_ad_subset[:, ppmi_ad_subset.var.index.isin(common_genes)]
-                best_lr, X_test, y_test, lr_pipeline, X, y = train_logistic_regression(ppmi_ad_subset)
+                best_lr, X_test, y_test, lr_pipeline, X, y = train_logistic_regression(ppmi_ad_subset, f"{gender}_{age_group}_{visit}")
 
                 with open(result_file, 'a') as f:
                     f.write(f"Visit: {visit}\n")
@@ -236,17 +336,9 @@ def main():
                 y_proba, y_pred = test_classifier(best_lr, X_test, y_test, result_file)
                 run_10x_fold_validation(lr_pipeline, X, y, result_file)
                 plot = plot_results(y_test, y_proba, y_pred)
-                plot.savefig(f"results_{gender}_{age_group}_{visit}.png")
+                plot.savefig(PATH + f"results_{gender}_{age_group}_{visit}.png")
                 plot.clf()
                 plot.close()
-
-                coefficients = pd.DataFrame({
-                    'ensembl_id': common_genes,
-                    'coefficient': lr_pipeline.named_steps['lr'].coef_[0],
-                    'abs_coef': np.abs(lr_pipeline.named_steps['lr'].coef_[0])
-                }).sort_values('abs_coef', ascending=False)
-
-
 
 
 if __name__ == '__main__':
