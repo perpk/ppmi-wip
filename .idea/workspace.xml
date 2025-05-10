@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa1cc71e-64b5-43ed-a4f9-0cc45af01969" name="Changes" comment="WIP: Batch ML for LR w. visits / Borda-ranked features tests">
+    <list default="true" id="fa1cc71e-64b5-43ed-a4f9-0cc45af01969" name="Changes" comment="WIP: LR Batch process for all strata w. model export">
+      <change afterPath="$PROJECT_DIR$/ml/script/SVM_stratified_classification_per_visit.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ml/script/common_ml.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ml/script/feature_importance_calcs.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ml/males/Age_Group_50-70/ppmi-stratified.predict.LR.males_50-70.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ml/males/Age_Group_50-70/ppmi-stratified.predict.LR.males_50-70.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml/script/stratified_classification_per_visit.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml/script/stratified_classification_per_visit.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml/script/stratified_classification_per_visit.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml/script/LR_stratified_classification_per_visit.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,25 +62,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.compare_borda_simple_intersection.executor&quot;: &quot;Run&quot;,
-    &quot;Python.feature_importances_stratified.executor&quot;: &quot;Run&quot;,
-    &quot;Python.stratified_classification_per_visit.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/kpax/Documents/aep/study/MSC/lab/ppmi-wip/ml/males/Age_Group_50-70&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.intellij.jupyter.core.jupyter.connections.configuration.JupyterServerConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.LR_stratified_classification_per_visit.executor": "Run",
+    "Python.SVM_stratified_classification_per_visit.executor": "Run",
+    "Python.compare_borda_simple_intersection.executor": "Run",
+    "Python.feature_importances_stratified.executor": "Run",
+    "Python.stratified_classification_per_visit.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/kpax/Documents/aep/study/MSC/lab/ppmi-wip/ml/males/Age_Group_50-70",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.intellij.jupyter.core.jupyter.connections.configuration.JupyterServerConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
       <console-settings module-name="ppmi-wip" is-module-sdk="true">
@@ -95,7 +99,55 @@
       <recent name="$PROJECT_DIR$/ml/males/Age_Group_30-50" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.stratified_classification_per_visit">
+  <component name="RunManager" selected="Python.SVM_stratified_classification_per_visit">
+    <configuration name="LR_stratified_classification_per_visit" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ppmi-wip" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="SCIPY_ARRAY_API" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ml/script" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ml/script/LR_stratified_classification_per_visit.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="SVM_stratified_classification_per_visit" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="ppmi-wip" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="SCIPY_ARRAY_API" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ml/script" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ml/script/SVM_stratified_classification_per_visit.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="compare_borda_simple_intersection" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ppmi-wip" />
       <option name="ENV_FILES" value="" />
@@ -142,38 +194,15 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="stratified_classification_per_visit" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="ppmi-wip" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-        <env name="SCIPY_ARRAY_API" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ml/script" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ml/script/stratified_classification_per_visit.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <list>
+      <item itemvalue="Python.SVM_stratified_classification_per_visit" />
       <item itemvalue="Python.compare_borda_simple_intersection" />
       <item itemvalue="Python.feature_importances_stratified" />
-      <item itemvalue="Python.stratified_classification_per_visit" />
+      <item itemvalue="Python.LR_stratified_classification_per_visit" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.stratified_classification_per_visit" />
+        <item itemvalue="Python.LR_stratified_classification_per_visit" />
         <item itemvalue="Python.feature_importances_stratified" />
         <item itemvalue="Python.compare_borda_simple_intersection" />
       </list>
@@ -214,7 +243,8 @@
       <workItem from="1745752536578" duration="15347000" />
       <workItem from="1745822096401" duration="50226000" />
       <workItem from="1746172856756" duration="47322000" />
-      <workItem from="1746557254008" duration="7658000" />
+      <workItem from="1746557254008" duration="10306000" />
+      <workItem from="1746633416984" duration="12016000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -456,7 +486,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746541936343</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="WIP: LR Batch process for all strata w. model export">
+      <option name="closed" value="true" />
+      <created>1746608470474</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1746608470475</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -467,7 +505,6 @@
       <path value="$PROJECT_DIR$/R-sources/ppmi-stratified" />
       <path value="$PROJECT_DIR$/R-sources/ppmi-wip.deconvolution.granulator" />
     </ignored-roots>
-    <MESSAGE value="DEG for starters" />
     <MESSAGE value="WIP - narrow down cell covariates to those with greatest proportion" />
     <MESSAGE value="Write DEG to anndata file" />
     <MESSAGE value="GSEA Primer on DEG" />
@@ -492,7 +529,8 @@
     <MESSAGE value="DEG visit-wise complete for males from all age groups. Also, visualize sample population over visits." />
     <MESSAGE value="WIP: Batch Feature Importance" />
     <MESSAGE value="WIP: Batch ML for LR w. visits / Borda-ranked features tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="WIP: Batch ML for LR w. visits / Borda-ranked features tests" />
+    <MESSAGE value="WIP: LR Batch process for all strata w. model export" />
+    <option name="LAST_COMMIT_MESSAGE" value="WIP: LR Batch process for all strata w. model export" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -506,8 +544,10 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/ppmi_wip$SVM_stratified_classification_per_visit.coverage" NAME="SVM_stratified_classification_per_visit Coverage Results" MODIFIED="1746904314017" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
     <SUITE FILE_PATH="coverage/ppmi_wip$stratified_classification_per_visit.coverage" NAME="stratified_classification_per_visit Coverage Results" MODIFIED="1746608114251" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
     <SUITE FILE_PATH="coverage/ppmi_wip$compare_borda_simple_intersection.coverage" NAME="compare_borda_simple_intersection Coverage Results" MODIFIED="1746471092227" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
     <SUITE FILE_PATH="coverage/ppmi_wip$feature_importances_stratified.coverage" NAME="feature_importances_stratified Coverage Results" MODIFIED="1746513866879" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
+    <SUITE FILE_PATH="coverage/ppmi_wip$LR_stratified_classification_per_visit.coverage" NAME="LR_stratified_classification_per_visit Coverage Results" MODIFIED="1746895010136" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
   </component>
 </project>
