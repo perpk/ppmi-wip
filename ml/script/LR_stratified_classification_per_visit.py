@@ -15,9 +15,9 @@ import os
 from sklearn.exceptions import FitFailedWarning
 
 
-PATH: Final = "/Users/kpax/Documents/aep/study/MSC/lab/PPMI_Project_133_RNASeq/classification/LR/"
+PATH: Final = "/Users/kpax/Documents/aep/study/MSC/lab/PPMI_Project_133_RNASeq/classification/LR2/"
+CLASSIFICATION_PATH: Final = "/Users/kpax/Documents/aep/study/MSC/lab/PPMI_Project_133_RNASeq/classification/"
 
-from feature_importance_calcs import calculate_stratified_importances
 from common_ml import test_classifier, get_dynamic_stratified_kfold, run_10x_fold_validation, plot_results
 
 def train_logistic_regression(anndata_obj_subset, stratum, test_size=0.2, random_state=42, min_samples=5):
@@ -109,8 +109,8 @@ def main():
     ppmi_ad = ad.read_h5ad("/Users/kpax/Documents/aep/study/MSC/lab/PPMI_Project_133_RNASeq/ppmi_adata.h5ad")
 
     visits = ['BL', 'V02', 'V04', 'V06', 'V08']
-    age_groups = ['70-80', '>80']
-    genders = ['Female']
+    age_groups = ['30-50', '50-70', '70-80', '>80']
+    genders = ['Male', 'Female']
 
     for gender in genders:
         for age_group in age_groups:
@@ -126,7 +126,7 @@ def main():
                         (ppmi_ad.obs['Diagnosis'].isin(['PD', 'Control'])) &
                         (ppmi_ad.obs['Visit'] == visit))
                 ppmi_ad_subset = ppmi_ad[mask]
-                common_genes = calculate_stratified_importances(ppmi_ad_subset, 'PD')
+                common_genes = pd.read_csv(CLASSIFICATION_PATH + f"common_genes_{gender}_{age_group}_{visit}.csv", index_col=0)
                 ppmi_ad_subset = ppmi_ad_subset[:, ppmi_ad_subset.var.index.isin(common_genes)]
                 result = train_logistic_regression(ppmi_ad_subset, f"{gender}_{age_group}_{visit}")
                 if result is None:

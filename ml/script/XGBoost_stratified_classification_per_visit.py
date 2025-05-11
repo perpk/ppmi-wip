@@ -2,7 +2,7 @@ import warnings
 from typing import Final
 
 import anndata as ad
-from feature_importance_calcs import calculate_stratified_importances
+import pandas as pd
 from common_ml import test_classifier, run_10x_fold_validation, plot_results
 import pandas as pd
 from sklearn.model_selection import train_test_split, StratifiedKFold
@@ -13,16 +13,18 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
 import joblib
 import os
+os.environ['OMP_NUM_THREADS'] = '1'
 from sklearn.exceptions import FitFailedWarning
+import xgboost as xgb
+import numpy as np
 
-PATH: Final = "/Users/kpax/Documents/aep/study/MSC/lab/PPMI_Project_133_RNASeq/classification/SVM2/"
+PATH: Final = "/Users/kpax/Documents/aep/study/MSC/lab/PPMI_Project_133_RNASeq/classification/XGBOOST2/"
 CLASSIFICATION_PATH: Final = "/Users/kpax/Documents/aep/study/MSC/lab/PPMI_Project_133_RNASeq/classification/"
 
-def train_svm(anndata_obj_subset, stratum, test_size=0.2, random_state=42, min_samples=5):
-    print("Training SVM Model")
+def train_xgboost(anndata_obj_subset, stratum, test_size=0.2, random_state=42, min_samples=5):
+    print("XGBoost Model Training")
     X = pd.DataFrame(anndata_obj_subset.layers['counts_log2'], columns=anndata_obj_subset.var_names)
     y = (anndata_obj_subset.obs['Diagnosis'] == 'PD').astype(int)
-
     class_counts = y.value_counts()
     print(f"Class distribution: {class_counts.to_dict()}")
 
@@ -48,6 +50,7 @@ def train_svm(anndata_obj_subset, stratum, test_size=0.2, random_state=42, min_s
     steps = [
         ('scaler', StandardScaler())
     ]
+
     if use_smote:
         steps.append(('smote', SMOTE(
             random_state=random_state,
@@ -55,14 +58,21 @@ def train_svm(anndata_obj_subset, stratum, test_size=0.2, random_state=42, min_s
     else:
         print(f"Warning: Not using SMOTE for {stratum} - smallest class has {min(train_class_counts)} samples")
 
-    steps.append(('svm', SVC(probability=True, random_state=42)))
+    steps.append(('xgb', xgb.XGBClassifier(
+        objective='binary:logistic',
+        scale_pos_weight=np.sum(y == 0) / np.sum(y == 1),  # Handle imbalance
+        random_state=42,
+        n_jobs=-1,
+        eval_metric='auc')))
 
-    svm_pipeline = Pipeline(steps)
+    xgboost_pipeline = Pipeline(steps)
 
     param_grid = {
-        'svm__C': [0.1, 1, 10],
-        'svm__gamma': ['scale', 'auto', 0.1],
-        'svm__kernel': ['linear', 'rbf']
+        'xgb__n_estimators': [100, 200],
+        'xgb__max_depth': [4, 6],
+        'xgb__learning_rate': [0.05, 0.1],
+        'xgb__subsample': [0.8, 0.9],
+        'xgb__colsample_bytree': [0.8, 0.9]
     }
 
     if use_smote:
@@ -74,15 +84,18 @@ def train_svm(anndata_obj_subset, stratum, test_size=0.2, random_state=42, min_s
     try:
         with warnings.catch_warnings():
             warnings.simplefilter("ignore", FitFailedWarning)
-
-            grid_search = GridSearchCV(estimator=svm_pipeline, param_grid=param_grid, cv=10, scoring='roc_auc', n_jobs=-1,
-                                       verbose=1)
+            grid_search = GridSearchCV(estimator=xgboost_pipeline,
+                                       param_grid=param_grid,
+                                       scoring='roc_auc',
+                                       cv=StratifiedKFold(3, shuffle=True, random_state=42),  # Fewer folds for speed
+                                       n_jobs=-1,
+                                       verbose=2)
             grid_search.fit(X_train, y_train)
-            best_svm = grid_search.best_estimator_
-            best_svm.fit(X_train, y_train)
+            best_xgboost = grid_search.best_estimator_
+            best_xgboost.fit(X_train, y_train)
             model_path = os.path.join(PATH + f"model_{stratum}.joblib")
             joblib.dump({
-                'model': best_svm,
+                'model': best_xgboost,
                 'X_test': X_test,
                 'y_test': y_test,
                 'features': X.columns.tolist()
@@ -91,7 +104,7 @@ def train_svm(anndata_obj_subset, stratum, test_size=0.2, random_state=42, min_s
         print(f"Failed to train model for {stratum}: {str(e)}")
         return None
 
-    return best_svm, X_test, y_test, svm_pipeline, X, y
+    return best_xgboost, X_test, y_test, xgboost_pipeline, X, y
 
 def main():
     ppmi_ad = ad.read_h5ad("/Users/kpax/Documents/aep/study/MSC/lab/PPMI_Project_133_RNASeq/ppmi_adata.h5ad")
@@ -113,23 +126,22 @@ def main():
                         (ppmi_ad.obs['Diagnosis'].isin(['PD', 'Control'])) &
                         (ppmi_ad.obs['Visit'] == visit))
                 ppmi_ad_subset = ppmi_ad[mask]
-                common_genes = pd.read_csv(CLASSIFICATION_PATH + f"common_genes_{gender}_{age_group}_{visit}.csv", index_col=0)
-                ppmi_ad_subset = ppmi_ad_subset[:, ppmi_ad_subset.var.index.isin(common_genes)]
-                result = train_svm(ppmi_ad_subset, f"{gender}_{age_group}_{visit}")
+                common_genes = pd.read_csv(CLASSIFICATION_PATH + f"common_genes_{gender}_{age_group}_{visit}.csv",
+                                           index_col=0)
+                ppmi_ad_subset = ppmi_ad_subset[:, ppmi_ad_subset.var.index.isin(common_genes.index.tolist())]
+                result = train_xgboost(ppmi_ad_subset, f"{gender}_{age_group}_{visit}")
                 if result is None:
-                    print(f"Failed to train SVM for {visit} - skipping")
+                    print(f"Failed to train XGBoost for {visit} - skipping")
                     continue
-                best_svm, X_test, y_test, svm_pipeline, X, y = result
-
+                best_xgboost, X_test, y_test, xgboost_pipeline, X, y = result
                 with open(result_file, 'a') as f:
                     f.write(f"Visit: {visit}\n")
-                y_proba, y_pred = test_classifier(best_svm, X_test, y_test, result_file)
-                run_10x_fold_validation(svm_pipeline, X, y, result_file)
+                y_proba, y_pred = test_classifier(best_xgboost, X_test, y_test, result_file)
+                run_10x_fold_validation(xgboost_pipeline, X, y, result_file)
                 plot = plot_results(y_test, y_proba, y_pred)
                 plot.savefig(PATH + f"results_{gender}_{age_group}_{visit}.png")
                 plot.clf()
                 plot.close()
-
 
 if __name__ == '__main__':
     main()
