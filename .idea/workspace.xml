@@ -4,15 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa1cc71e-64b5-43ed-a4f9-0cc45af01969" name="Changes" comment="WIP: LR, SVM Stratified ML Batch Scripts w. failsafety (Sample/Class Size)">
+    <list default="true" id="fa1cc71e-64b5-43ed-a4f9-0cc45af01969" name="Changes" comment="XGBoost finalized for stratified training and prediction w. model and performance metrics export">
+      <change afterPath="$PROJECT_DIR$/ml/script/LR_stratified_feature_relevance_from_model_example.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/ml/script/LR_stratified_shap_analysis_example.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ml/script/RF_stratified_classification_per_visit.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ml/script/XGBoost_stratified_classification_per_visit.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ml/script/create_feature_importance_sources.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ml/males/Age_Group_50-70/ppmi-stratified.predict.LR.males_50-70.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/ml/males/Age_Group_50-70/ppmi-stratified.predict.LR.males_50-70.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ml/script/LR_stratified_classification_per_visit.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml/script/LR_stratified_classification_per_visit.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml/script/SVM_stratified_classification_per_visit.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml/script/SVM_stratified_classification_per_visit.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +64,8 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Python.LR_stratified_classification_per_visit.executor": "Run",
+    "Python.LR_stratified_feature_relevance_from_model_example.executor": "Run",
+    "Python.LR_stratified_shap_analysis_example.executor": "Run",
     "Python.RF_stratified_classification_per_visit.executor": "Run",
     "Python.SVM_stratified_classification_per_visit.executor": "Run",
     "Python.XGBoost_stratified_classification_per_visit.executor": "Run",
@@ -104,7 +103,7 @@
       <recent name="$PROJECT_DIR$/ml/males/Age_Group_30-50" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.XGBoost_stratified_classification_per_visit">
+  <component name="RunManager" selected="Python.LR_stratified_feature_relevance_from_model_example">
     <configuration name="LR_stratified_classification_per_visit" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ppmi-wip" />
       <option name="ENV_FILES" value="" />
@@ -121,6 +120,54 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ml/script/LR_stratified_classification_per_visit.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="LR_stratified_feature_relevance_from_model_example" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="ppmi-wip" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="SCIPY_ARRAY_API" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ml/script" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ml/script/LR_stratified_feature_relevance_from_model_example.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="LR_stratified_shap_analysis_example" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ppmi-wip" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="SCIPY_ARRAY_API" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ml/script" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ml/script/LR_stratified_shap_analysis_example.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -201,29 +248,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="compare_borda_simple_intersection" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="ppmi-wip" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ml/script" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ml/script/compare_borda_simple_intersection.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="create_feature_importance_sources" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ppmi-wip" />
       <option name="ENV_FILES" value="" />
@@ -271,21 +295,22 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.LR_stratified_feature_relevance_from_model_example" />
       <item itemvalue="Python.XGBoost_stratified_classification_per_visit" />
       <item itemvalue="Python.SVM_stratified_classification_per_visit" />
+      <item itemvalue="Python.LR_stratified_shap_analysis_example" />
       <item itemvalue="Python.create_feature_importance_sources" />
       <item itemvalue="Python.RF_stratified_classification_per_visit" />
-      <item itemvalue="Python.compare_borda_simple_intersection" />
       <item itemvalue="Python.feature_importances_stratified" />
       <item itemvalue="Python.LR_stratified_classification_per_visit" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.LR_stratified_shap_analysis_example" />
+        <item itemvalue="Python.LR_stratified_classification_per_visit" />
         <item itemvalue="Python.RF_stratified_classification_per_visit" />
         <item itemvalue="Python.create_feature_importance_sources" />
-        <item itemvalue="Python.LR_stratified_classification_per_visit" />
         <item itemvalue="Python.feature_importances_stratified" />
-        <item itemvalue="Python.compare_borda_simple_intersection" />
       </list>
     </recent_temporary>
   </component>
@@ -325,7 +350,7 @@
       <workItem from="1745822096401" duration="50226000" />
       <workItem from="1746172856756" duration="47322000" />
       <workItem from="1746557254008" duration="10306000" />
-      <workItem from="1746633416984" duration="28585000" />
+      <workItem from="1746633416984" duration="44287000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -583,7 +608,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746911621663</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="XGBoost finalized for stratified training and prediction w. model and performance metrics export">
+      <option name="closed" value="true" />
+      <created>1746984587362</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1746984587362</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -594,7 +627,6 @@
       <path value="$PROJECT_DIR$/R-sources/ppmi-stratified" />
       <path value="$PROJECT_DIR$/R-sources/ppmi-wip.deconvolution.granulator" />
     </ignored-roots>
-    <MESSAGE value="Write DEG to anndata file" />
     <MESSAGE value="GSEA Primer on DEG" />
     <MESSAGE value="WIP: scRNA RBC" />
     <MESSAGE value="WIP: Age-Based Stratified DGE Analysis - Male individuals, Baseline Visits." />
@@ -619,7 +651,8 @@
     <MESSAGE value="WIP: Batch ML for LR w. visits / Borda-ranked features tests" />
     <MESSAGE value="WIP: LR Batch process for all strata w. model export" />
     <MESSAGE value="WIP: LR, SVM Stratified ML Batch Scripts w. failsafety (Sample/Class Size)" />
-    <option name="LAST_COMMIT_MESSAGE" value="WIP: LR, SVM Stratified ML Batch Scripts w. failsafety (Sample/Class Size)" />
+    <MESSAGE value="XGBoost finalized for stratified training and prediction w. model and performance metrics export" />
+    <option name="LAST_COMMIT_MESSAGE" value="XGBoost finalized for stratified training and prediction w. model and performance metrics export" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -628,6 +661,11 @@
           <url>file://$PROJECT_DIR$/ml/script/feature_importances_stratified.py</url>
           <line>126</line>
           <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/ml/script/LR_stratified_feature_relevance_from_model_example.py</url>
+          <line>96</line>
+          <option name="timeStamp" value="29" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -640,6 +678,8 @@
     <SUITE FILE_PATH="coverage/ppmi_wip$compare_borda_simple_intersection.coverage" NAME="compare_borda_simple_intersection Coverage Results" MODIFIED="1746471092227" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
     <SUITE FILE_PATH="coverage/ppmi_wip$RF_stratified_classification_per_visit.coverage" NAME="RF_stratified_classification_per_visit Coverage Results" MODIFIED="1746959288116" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
     <SUITE FILE_PATH="coverage/ppmi_wip$feature_importances_stratified.coverage" NAME="feature_importances_stratified Coverage Results" MODIFIED="1746513866879" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
-    <SUITE FILE_PATH="coverage/ppmi_wip$LR_stratified_classification_per_visit.coverage" NAME="LR_stratified_classification_per_visit Coverage Results" MODIFIED="1746895010136" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
+    <SUITE FILE_PATH="coverage/ppmi_wip$LR_stratified_shap_analysis_example.coverage" NAME="LR_stratified_shap_analysis_example Coverage Results" MODIFIED="1747046442489" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
+    <SUITE FILE_PATH="coverage/ppmi_wip$LR_stratified_classification_per_visit.coverage" NAME="LR_stratified_classification_per_visit Coverage Results" MODIFIED="1747038921980" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
+    <SUITE FILE_PATH="coverage/ppmi_wip$LR_stratified_feature_relevance_from_model_example.coverage" NAME="LR_stratified_feature_relevance_from_model_example Coverage Results" MODIFIED="1747052562759" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
   </component>
 </project>
