@@ -114,7 +114,7 @@ def main():
                         (ppmi_ad.obs['Visit'] == visit))
                 ppmi_ad_subset = ppmi_ad[mask]
                 common_genes = pd.read_csv(CLASSIFICATION_PATH + f"common_genes_{gender}_{age_group}_{visit}.csv", index_col=0)
-                ppmi_ad_subset = ppmi_ad_subset[:, ppmi_ad_subset.var.index.isin(common_genes)]
+                ppmi_ad_subset = ppmi_ad_subset[:, ppmi_ad_subset.var.index.isin(common_genes.index.tolist())]
                 result = train_svm(ppmi_ad_subset, f"{gender}_{age_group}_{visit}")
                 if result is None:
                     print(f"Failed to train SVM for {visit} - skipping")

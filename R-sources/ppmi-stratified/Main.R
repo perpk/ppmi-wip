@@ -28,47 +28,47 @@ strata <- list(
   # list(Gender="Male", Age_Group="30-50", Visit="BL", Diagnosis=c("PD", "Control"), Design=design_full),
   # list(Gender="Male", Age_Group="50-70", Visit="BL", Diagnosis=c("PD", "Control"), Design=design_full),
   # list(Gender="Male", Age_Group="70-80", Visit="BL", Diagnosis=c("PD", "Control"), Design=design_full),
-  list(Gender="Male", Age_Group=">80", Visit="BL", Diagnosis=c("PD", "Control"), Design=design_reduced),
-  # list(Gender="Female", Age_Group="30-50", Visit="BL", Diagnosis=c("PD", "Control"), Design=design_full),
-  # list(Gender="Female", Age_Group="50-70", Visit="BL", Diagnosis=c("PD", "Control"), Design=design_full),
-  # list(Gender="Female", Age_Group="70-80", Visit="BL", Diagnosis=c("PD", "Control"), Design=design_full),
-  # list(Gender="Female", Age_Group=">80", Visit="BL", Diagnosis=c("PD", "Control"), Design="Diagnosis"),
+  # list(Gender="Male", Age_Group=">80", Visit="BL", Diagnosis=c("PD", "Control"), Design=design_reduced),
+  list(Gender="Female", Age_Group="30-50", Visit="BL", Diagnosis=c("PD", "Control"), Design=design_full),
+  list(Gender="Female", Age_Group="50-70", Visit="BL", Diagnosis=c("PD", "Control"), Design=design_full),
+  list(Gender="Female", Age_Group="70-80", Visit="BL", Diagnosis=c("PD", "Control"), Design=design_full),
+  list(Gender="Female", Age_Group=">80", Visit="BL", Diagnosis=c("PD", "Control"), Design="Diagnosis"),
   
   # list(Gender="Male", Age_Group="30-50", Visit="V02", Diagnosis=c("PD", "Control"), Design=design_full),
   # list(Gender="Male", Age_Group="50-70", Visit="V02", Diagnosis=c("PD", "Control"), Design=design_full),
   # list(Gender="Male", Age_Group="70-80", Visit="V02", Diagnosis=c("PD", "Control"), Design=design_full),
-  list(Gender="Male", Age_Group=">80", Visit="V02", Diagnosis=c("PD", "Control"), Design="Diagnosis"),
-  # list(Gender="Female", Age_Group="30-50", Visit="V02", Diagnosis=c("PD", "Control"), Design=design_full),
-  # list(Gender="Female", Age_Group="50-70", Visit="V02", Diagnosis=c("PD", "Control"), Design=design_full),
-  # list(Gender="Female", Age_Group="70-80", Visit="V02", Diagnosis=c("PD", "Control"), Design=design_full),
-  # list(Gender="Female", Age_Group=">80", Visit="V02", Diagnosis=c("PD", "Control"), Design="Diagnosis"),
+  # list(Gender="Male", Age_Group=">80", Visit="V02", Diagnosis=c("PD", "Control"), Design="Diagnosis"),
+  list(Gender="Female", Age_Group="30-50", Visit="V02", Diagnosis=c("PD", "Control"), Design=design_full),
+  list(Gender="Female", Age_Group="50-70", Visit="V02", Diagnosis=c("PD", "Control"), Design=design_full),
+  list(Gender="Female", Age_Group="70-80", Visit="V02", Diagnosis=c("PD", "Control"), Design=design_full),
+  list(Gender="Female", Age_Group=">80", Visit="V02", Diagnosis=c("PD", "Control"), Design="Diagnosis"),
   
   # list(Gender="Male", Age_Group="30-50", Visit="V04", Diagnosis=c("PD", "Control"), Design=design_full),
   # list(Gender="Male", Age_Group="50-70", Visit="V04", Diagnosis=c("PD", "Control"), Design=design_full),
   # list(Gender="Male", Age_Group="70-80", Visit="V04", Diagnosis=c("PD", "Control"), Design=design_full),
-  list(Gender="Male", Age_Group=">80", Visit="V04", Diagnosis=c("PD", "Control"), Design="Diagnosis"),
-  # list(Gender="Female", Age_Group="30-50", Visit="V04", Diagnosis=c("PD", "Control"), Design=design_full),
-  # list(Gender="Female", Age_Group="50-70", Visit="V04", Diagnosis=c("PD", "Control"), Design=design_full),
-  # list(Gender="Female", Age_Group="70-80", Visit="V04", Diagnosis=c("PD", "Control"), Design=design_full),
-  # list(Gender="Female", Age_Group=">80", Visit="V04", Diagnosis=c("PD", "Control"), Design="Diagnosis"),
+  # list(Gender="Male", Age_Group=">80", Visit="V04", Diagnosis=c("PD", "Control"), Design="Diagnosis"),
+  list(Gender="Female", Age_Group="30-50", Visit="V04", Diagnosis=c("PD", "Control"), Design=design_full),
+  list(Gender="Female", Age_Group="50-70", Visit="V04", Diagnosis=c("PD", "Control"), Design=design_full),
+  list(Gender="Female", Age_Group="70-80", Visit="V04", Diagnosis=c("PD", "Control"), Design=design_full),
+  list(Gender="Female", Age_Group=">80", Visit="V04", Diagnosis=c("PD", "Control"), Design="Diagnosis"),
    
   # list(Gender="Male", Age_Group="30-50", Visit="V06", Diagnosis=c("PD", "Control"), Design=design_full),
   # list(Gender="Male", Age_Group="50-70", Visit="V06", Diagnosis=c("PD", "Control"), Design=design_full),
   # list(Gender="Male", Age_Group="70-80", Visit="V06", Diagnosis=c("PD", "Control"), Design=design_full),
-  list(Gender="Male", Age_Group=">80", Visit="V06", Diagnosis=c("PD", "Control"), Design="Diagnosis"),
-  # list(Gender="Female", Age_Group="30-50", Visit="V06", Diagnosis=c("PD", "Control"), Design=design_full),
-  # list(Gender="Female", Age_Group="50-70", Visit="V06", Diagnosis=c("PD", "Control"), Design=design_full),
-  # list(Gender="Female", Age_Group="70-80", Visit="V06", Diagnosis=c("PD", "Control"), Design=design_full),
-  # list(Gender="Female", Age_Group=">80", Visit="V06", Diagnosis=c("PD", "Control"), Design="Diagnosis"),
+  # list(Gender="Male", Age_Group=">80", Visit="V06", Diagnosis=c("PD", "Control"), Design="Diagnosis"),
+  list(Gender="Female", Age_Group="30-50", Visit="V06", Diagnosis=c("PD", "Control"), Design=design_full),
+  list(Gender="Female", Age_Group="50-70", Visit="V06", Diagnosis=c("PD", "Control"), Design=design_full),
+  list(Gender="Female", Age_Group="70-80", Visit="V06", Diagnosis=c("PD", "Control"), Design=design_full),
+  list(Gender="Female", Age_Group=">80", Visit="V06", Diagnosis=c("PD", "Control"), Design="Diagnosis"),
    
   # list(Gender="Male", Age_Group="30-50", Visit="V08", Diagnosis=c("PD", "Control"), Design=design_full),
   # list(Gender="Male", Age_Group="50-70", Visit="V08", Diagnosis=c("PD", "Control"), Design=design_full)
   # list(Gender="Male", Age_Group="70-80", Visit="V08", Diagnosis=c("PD", "Control"), Design=design_full)
-  list(Gender="Male", Age_Group=">80", Visit="V08", Diagnosis=c("PD", "Control"), Design="Diagnosis")
-  # list(Gender="Female", Age_Group="30-50", Visit="V08", Diagnosis=c("PD", "Control"), Design=design_full),
-  # list(Gender="Female", Age_Group="50-70", Visit="V08", Diagnosis=c("PD", "Control"), Design=design_full),
-  # list(Gender="Female", Age_Group="70-80", Visit="V08", Diagnosis=c("PD", "Control"), Design=design_full),
-  # list(Gender="Female", Age_Group=">80", Visit="V08", Diagnosis=c("PD", "Control"), Design="Diagnosis")
+  # list(Gender="Male", Age_Group=">80", Visit="V08", Diagnosis=c("PD", "Control"), Design="Diagnosis")
+  list(Gender="Female", Age_Group="30-50", Visit="V08", Diagnosis=c("PD", "Control"), Design=design_full),
+  list(Gender="Female", Age_Group="50-70", Visit="V08", Diagnosis=c("PD", "Control"), Design=design_full),
+  list(Gender="Female", Age_Group="70-80", Visit="V08", Diagnosis=c("PD", "Control"), Design=design_full),
+  list(Gender="Female", Age_Group=">80", Visit="V08", Diagnosis=c("PD", "Control"), Design="Diagnosis")
 )
 
 for (stratum in strata) {

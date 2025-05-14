@@ -15,7 +15,7 @@ import os
 from sklearn.exceptions import FitFailedWarning
 
 
-PATH: Final = "/Users/kpax/Documents/aep/study/MSC/lab/PPMI_Project_133_RNASeq/classification/LR2/"
+PATH: Final = "/Users/kpax/Documents/aep/study/MSC/lab/PPMI_Project_133_RNASeq/classification/LR3/"
 CLASSIFICATION_PATH: Final = "/Users/kpax/Documents/aep/study/MSC/lab/PPMI_Project_133_RNASeq/classification/"
 
 from common_ml import test_classifier, get_dynamic_stratified_kfold, run_10x_fold_validation, plot_results
@@ -108,9 +108,9 @@ def train_logistic_regression(anndata_obj_subset, stratum, test_size=0.2, random
 def main():
     ppmi_ad = ad.read_h5ad("/Users/kpax/Documents/aep/study/MSC/lab/PPMI_Project_133_RNASeq/ppmi_adata.h5ad")
 
-    visits = ['BL', 'V02', 'V04', 'V06', 'V08']
-    age_groups = ['30-50', '50-70', '70-80', '>80']
-    genders = ['Male', 'Female']
+    visits = ['BL']#['BL', 'V02', 'V04', 'V06', 'V08']
+    age_groups = ['50-70']#['30-50', '50-70', '70-80', '>80']
+    genders = ['Male']#['Male', 'Female']
 
     for gender in genders:
         for age_group in age_groups:
