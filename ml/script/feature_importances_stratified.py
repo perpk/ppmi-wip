@@ -87,7 +87,7 @@ def extract_common_genes_by_borda_ranks(method_collection):
         method_collection[method]['genes'] = [method_collection[method]['genes'][i] for i in sorted_indices]
     # Get all unique genes across methods
     gene_lists = [method_collection[method]['genes'] for method in method_collection]
-    all_genes = list(set().union(*gene_lists))
+    all_genes = list(set().intersection(*gene_lists))
 
     # Initialize Borda scores (default: high penalty for missing genes)
     max_rank = max(len(method['genes']) for method in method_collection.values()) + 1
@@ -132,7 +132,7 @@ def main(subset=False):
                         common_genes_by_borda_ranks.set_index("Gene")[[visit]], how="outer"
                     )
             consolidated_results.to_csv(
-                f"/Users/kpax/Documents/aep/study/MSC/lab/PPMI_Project_133_RNASeq/feature_selection/borda_ranks_{gender}_{age_group}.csv",
+                f"/Users/kpax/Documents/aep/study/MSC/lab/PPMI_Project_133_RNASeq/feature_selection/borda_ranks_intersect_{gender}_{age_group}.csv",
                 index=True)
 
 

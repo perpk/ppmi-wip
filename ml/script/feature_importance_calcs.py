@@ -23,6 +23,7 @@ def filter_data_by_variation(anndata_object, anndata_layer, target_col, target_v
 
 
 def anova_f(X_scaled, y, selected_genes, n_top_genes=20000):
+    print(f"ANOVA F-Score => n_top_genes: {n_top_genes}")
     anova_scores, _ = f_classif(X_scaled, y)
     top_indices_anovaf = np.argsort(anova_scores)[-n_top_genes:][::-1]
     anova_selected_genes = selected_genes[top_indices_anovaf]
@@ -31,6 +32,7 @@ def anova_f(X_scaled, y, selected_genes, n_top_genes=20000):
 
 
 def chi_square(X_scaled, y, selected_genes, n_top_genes=20000):
+    print(f"Chi-Square => n_top_genes: {n_top_genes}")
     discretizer = KBinsDiscretizer(n_bins=5, encode='ordinal', strategy='uniform')
     X_processed = discretizer.fit_transform(X_scaled)
     chi2_scores, _ = chi2(X_processed, y)
@@ -41,6 +43,7 @@ def chi_square(X_scaled, y, selected_genes, n_top_genes=20000):
 
 
 def mutual_info(X_scaled, y, selected_genes, n_top_genes=20000):
+    print(f"Mutual Information => n_top_genes: {n_top_genes}")
     mi_scores = mutual_info_classif(X_scaled, y)
     top_indices_mi = np.argsort(mi_scores)[-n_top_genes:][::-1]
     mi_selected_genes = selected_genes[top_indices_mi]
@@ -49,6 +52,7 @@ def mutual_info(X_scaled, y, selected_genes, n_top_genes=20000):
 
 
 def fishers_score(X_scaled, y, selected_genes, n_top_genes=20000):
+    print(f"Fisher's score => n_top_genes: {n_top_genes}")
     fisher_scores= fisher_score.fisher_score(X_scaled, np.asarray(y))
     top_indices_fisher = np.argsort(fisher_scores)[-n_top_genes:][::-1]
     fisher_selected_genes = selected_genes[top_indices_fisher]
@@ -80,16 +84,17 @@ def filter_data_by_variation(anndata_object, anndata_layer, target_col, target_v
     return X_scaled, y, selected_genes
 
 
-def calculate_stratified_importances(anndata_obj_subset, case_diagnosis):
+def calculate_stratified_importances(anndata_obj_subset, case_diagnosis, n_top_genes=20000):
     X_scaled, y, selected_genes = filter_data_by_variation(anndata_obj_subset, 'counts_log2', 'Diagnosis',
                                                            case_diagnosis)
+    print(f"n_top_genes: {n_top_genes}")
     print("1. Anova")
-    anova_results = anova_f(X_scaled, y, selected_genes)
+    anova_results = anova_f(X_scaled, y, selected_genes, n_top_genes=n_top_genes)
     print("2. Chi-squared")
-    chi_square_results = chi_square(X_scaled, y, selected_genes)
+    chi_square_results = chi_square(X_scaled, y, selected_genes, n_top_genes=n_top_genes)
     print("3. Mutual Information")
-    mutual_info_results = mutual_info(X_scaled, y, selected_genes)
+    mutual_info_results = mutual_info(X_scaled, y, selected_genes, n_top_genes=n_top_genes)
     print("4. Fisher Score")
-    fishers_score_results = fishers_score(X_scaled, y, selected_genes)
+    fishers_score_results = fishers_score(X_scaled, y, selected_genes, n_top_genes=n_top_genes)
     return set(anova_results['genes']) & set(chi_square_results['genes']) & set(mutual_info_results['genes']) & set(
         fishers_score_results['genes'])
