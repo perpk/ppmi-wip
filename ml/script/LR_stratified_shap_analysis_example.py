@@ -6,13 +6,8 @@ import shap
 import joblib
 import numpy as np
 import pandas as pd
-import scanpy as sc
-from sklearn.linear_model import LogisticRegression
-from tqdm import tqdm
 import os
-import matplotlib.pyplot as plt
 import anndata as ad
-from sklearn import set_config
 
 # Example configuration - adjust to your actual data
 model_dir = "path/to/your/stratified_models"

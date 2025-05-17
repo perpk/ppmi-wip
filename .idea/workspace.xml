@@ -4,16 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa1cc71e-64b5-43ed-a4f9-0cc45af01969" name="Changes" comment="Batch-wise GSEA with Enrichr / persist changes to sources">
-      <change afterPath="$PROJECT_DIR$/gsea/script/gsea_ml_feature_importances_batch.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ml/script/predict_gse_160299.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ml/script/scap-pad.py" afterDir="false" />
+    <list default="true" id="fa1cc71e-64b5-43ed-a4f9-0cc45af01969" name="Changes" comment="Backup Commit.">
+      <change afterPath="$PROJECT_DIR$/deg/script/process_degs.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gsea/ppmi-wip.stratification.gsea.reconcilation.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gsea/script/gsea_reconcilation_batch.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gsea/script/gsea_visualisations_batch.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gsea/ppmi-wip.stratification.gsea.all-visits.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/gsea/ppmi-wip.stratification.gsea.all-visits.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gsea/script/gsea_stratified_batch.py" beforeDir="false" afterPath="$PROJECT_DIR$/gsea/script/gsea_stratified_batch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml/script/create_feature_importance_sources.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml/script/create_feature_importance_sources.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml/script/feature_importance_calcs.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml/script/feature_importance_calcs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml/script/feature_importances_stratified.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml/script/feature_importances_stratified.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml/script/LR_stratified_shap_analysis_example.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml/script/LR_stratified_shap_analysis_example.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,8 +76,11 @@
     "Python.create_feature_importance_sources.executor": "Run",
     "Python.feature_importances_stratified.executor": "Run",
     "Python.gsea_ml_feature_importances_batch.executor": "Debug",
+    "Python.gsea_reconcilation_batch.executor": "Run",
     "Python.gsea_stratified_batch.executor": "Run",
+    "Python.gsea_visualisations_batch.executor": "Debug",
     "Python.predict_gse_160299.executor": "Run",
+    "Python.process_degs.executor": "Run",
     "Python.scap-pad.executor": "Debug",
     "Python.stratified_classification_per_visit.executor": "Run",
     "Python.stratified_feature_relevance_extraction.executor": "Debug",
@@ -111,8 +113,12 @@
       <recent name="$PROJECT_DIR$/ml/males/Age_Group_70-80" />
       <recent name="$PROJECT_DIR$/ml/males/Age_Group_30-50" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/gsea" />
+      <recent name="$PROJECT_DIR$/ml/script" />
+    </key>
   </component>
-  <component name="RunManager" selected="Python.scap-pad">
+  <component name="RunManager" selected="Python.gsea_visualisations_batch">
     <configuration name="LR_stratified_feature_relevance_from_model_example" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="ppmi-wip" />
       <option name="ENV_FILES" value="" />
@@ -208,7 +214,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="gsea_ml_feature_importances_batch" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="gsea_reconcilation_batch" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ppmi-wip" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -222,7 +228,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/gsea/script/gsea_ml_feature_importances_batch.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/gsea/script/gsea_reconcilation_batch.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -231,7 +237,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="gsea_stratified_batch" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="gsea_visualisations_batch" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ppmi-wip" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -245,7 +251,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/gsea/script/gsea_stratified_batch.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/gsea/script/gsea_visualisations_batch.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -254,22 +260,21 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="predict_gse_160299" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="process_degs" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ppmi-wip" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
-        <env name="SCIPY_ARRAY_API" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/gsea/script" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/deg/script" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ml/script/predict_gse_160299.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/deg/script/process_degs.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -331,18 +336,18 @@
       <item itemvalue="Python.XGBoost_stratified_classification_per_visit" />
       <item itemvalue="Python.SVM_stratified_classification_per_visit" />
       <item itemvalue="Python.create_feature_importance_sources" />
+      <item itemvalue="Python.gsea_reconcilation_batch" />
+      <item itemvalue="Python.gsea_visualisations_batch" />
+      <item itemvalue="Python.process_degs" />
       <item itemvalue="Python.scap-pad" />
-      <item itemvalue="Python.gsea_ml_feature_importances_batch" />
-      <item itemvalue="Python.predict_gse_160299" />
-      <item itemvalue="Python.gsea_stratified_batch" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.gsea_visualisations_batch" />
+        <item itemvalue="Python.gsea_reconcilation_batch" />
+        <item itemvalue="Python.process_degs" />
         <item itemvalue="Python.scap-pad" />
         <item itemvalue="Python.create_feature_importance_sources" />
-        <item itemvalue="Python.predict_gse_160299" />
-        <item itemvalue="Python.gsea_ml_feature_importances_batch" />
-        <item itemvalue="Python.gsea_stratified_batch" />
       </list>
     </recent_temporary>
   </component>
@@ -384,7 +389,7 @@
       <workItem from="1746557254008" duration="10306000" />
       <workItem from="1746633416984" duration="74751000" />
       <workItem from="1747245971720" duration="4169000" />
-      <workItem from="1747254527722" duration="23588000" />
+      <workItem from="1747254527722" duration="41914000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -666,7 +671,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747256148648</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Backup Commit.">
+      <option name="closed" value="true" />
+      <created>1747421128366</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1747421128366</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -677,7 +690,6 @@
       <path value="$PROJECT_DIR$/R-sources/ppmi-stratified" />
       <path value="$PROJECT_DIR$/R-sources/ppmi-wip.deconvolution.granulator" />
     </ignored-roots>
-    <MESSAGE value="WIP: Age-Based Stratified DGE Analysis - Male individuals, Baseline Visits." />
     <MESSAGE value="WIP: Add RDataTmp to ignore" />
     <MESSAGE value="WIP: backup commit" />
     <MESSAGE value="t-SNE per Gender incl. Prodromal Cases" />
@@ -702,7 +714,8 @@
     <MESSAGE value="XGBoost finalized for stratified training and prediction w. model and performance metrics export" />
     <MESSAGE value="Feature extraction from LR as an example to start with" />
     <MESSAGE value="Batch-wise GSEA with Enrichr / persist changes to sources" />
-    <option name="LAST_COMMIT_MESSAGE" value="Batch-wise GSEA with Enrichr / persist changes to sources" />
+    <MESSAGE value="Backup Commit." />
+    <option name="LAST_COMMIT_MESSAGE" value="Backup Commit." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -732,19 +745,55 @@
           <line>30</line>
           <option name="timeStamp" value="46" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/deg/script/process_degs.py</url>
+          <line>143</line>
+          <option name="timeStamp" value="57" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/gsea/script/gsea_reconcilation_batch.py</url>
+          <line>19</line>
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/gsea/script/gsea_reconcilation_batch.py</url>
+          <line>11</line>
+          <option name="timeStamp" value="62" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/gsea/script/gsea_visualisations_batch.py</url>
+          <line>40</line>
+          <option name="timeStamp" value="63" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/gsea/script/gsea_visualisations_batch.py</url>
+          <line>13</line>
+          <option name="timeStamp" value="64" />
+        </line-breakpoint>
       </breakpoints>
+      <breakpoints-defaults>
+        <breakpoint type="python-line" />
+      </breakpoints-defaults>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="gsea_file" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ppmi_wip$SVM_stratified_classification_per_visit.coverage" NAME="SVM_stratified_classification_per_visit Coverage Results" MODIFIED="1747062632944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
     <SUITE FILE_PATH="coverage/ppmi_wip$XGBoost_stratified_classification_per_visit.coverage" NAME="XGBoost_stratified_classification_per_visit Coverage Results" MODIFIED="1746982216652" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
     <SUITE FILE_PATH="coverage/ppmi_wip$create_feature_importance_sources.coverage" NAME="create_feature_importance_sources Coverage Results" MODIFIED="1747345360533" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
+    <SUITE FILE_PATH="coverage/ppmi_wip$process_degs.coverage" NAME="process_degs Coverage Results" MODIFIED="1747425670194" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/deg/script" />
     <SUITE FILE_PATH="coverage/ppmi_wip$RF_stratified_classification_per_visit.coverage" NAME="RF_stratified_classification_per_visit Coverage Results" MODIFIED="1746959288116" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
     <SUITE FILE_PATH="coverage/ppmi_wip$gsea_stratified_batch.coverage" NAME="gsea_stratified_batch Coverage Results" MODIFIED="1747303794261" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/gsea/script" />
     <SUITE FILE_PATH="coverage/ppmi_wip$gsea_ml_feature_importances_batch.coverage" NAME="gsea_ml_feature_importances_batch Coverage Results" MODIFIED="1747328542795" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/gsea/script" />
     <SUITE FILE_PATH="coverage/ppmi_wip$feature_importances_stratified.coverage" NAME="feature_importances_stratified Coverage Results" MODIFIED="1746513866879" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
     <SUITE FILE_PATH="coverage/ppmi_wip$LR_stratified_shap_analysis_example.coverage" NAME="LR_stratified_shap_analysis_example Coverage Results" MODIFIED="1747046442489" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
     <SUITE FILE_PATH="coverage/ppmi_wip$predict_gse_160299.coverage" NAME="predict_gse_160299 Coverage Results" MODIFIED="1747345055964" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/gsea/script" />
+    <SUITE FILE_PATH="coverage/ppmi_wip$gsea_reconcilation_batch.coverage" NAME="gsea_reconcilation_batch Coverage Results" MODIFIED="1747495816837" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/gsea/script" />
+    <SUITE FILE_PATH="coverage/ppmi_wip$gsea_visualisations_batch.coverage" NAME="gsea_visualisations_batch Coverage Results" MODIFIED="1747501674405" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/gsea/script" />
     <SUITE FILE_PATH="coverage/ppmi_wip$stratified_classification_per_visit.coverage" NAME="stratified_classification_per_visit Coverage Results" MODIFIED="1746608114251" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
     <SUITE FILE_PATH="coverage/ppmi_wip$compare_borda_simple_intersection.coverage" NAME="compare_borda_simple_intersection Coverage Results" MODIFIED="1746471092227" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
     <SUITE FILE_PATH="coverage/ppmi_wip$scap_pad.coverage" NAME="scap-pad Coverage Results" MODIFIED="1747347431469" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />

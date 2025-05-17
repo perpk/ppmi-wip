@@ -112,3 +112,5 @@ sklearn-features
 matplotlib-venn
 venny4py
 shap
+pyvis
+networkx
