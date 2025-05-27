@@ -9,9 +9,9 @@ GSEA_ML_PATH: Final = "/Users/kpax/Documents/aep/study/MSC/lab/PPMI_Project_133_
 
 def main():
     ppmi_ad = ad.read_h5ad("/Users/kpax/Documents/aep/study/MSC/lab/PPMI_Project_133_RNASeq/ppmi_adata.h5ad")
-    classificator_dirs = ["LR2", "SVM2", "RF2", "XGBOOST2"]
+    classifier_dirs = ["LR2", "SVM2", "RF2", "XGBOOST2"]
     age_groups = ["30-50", "50-70", "70-80", ">80"]
-    genders = ["Male", "Female"]
+    genders = ["Female"]#["Male", "Female"]
     visits = ["BL", "V02", "V04", "V06", "V08"]
     gene_sets = ['MSigDB_Hallmark_2020',
                  'KEGG_2021_Human',
@@ -37,18 +37,17 @@ def main():
     n_top_features = 200
     debug = False
 
-    for classificator in classificator_dirs:
+    for classifier in classifier_dirs:
         for gender in genders:
             for age_group in age_groups:
                 for visit in visits:
-                    print(f"Visit: {visit}, Age Group: {age_group}, Gender: {gender}")
+                    print(f"Classifier: {classifier}, Visit: {visit}, Age Group: {age_group}, Gender: {gender}")
                     mask = ((ppmi_ad.obs['Age_Group'] == age_group) &
                             (ppmi_ad.obs['Gender'] == gender) &
                             (ppmi_ad.obs['Diagnosis'].isin(['PD', 'Control'])) &
                             (ppmi_ad.obs['Visit'] == visit))
                     ppmi_ad_subset = ppmi_ad[mask]
-                    symbol_ensembl_mapping = ppmi_ad_subset.varm['symbol_ensembl_mapping']
-                    feature_importances_file = Path(CLASSIFICATION_PATH) / f"{classificator}/feature_importance_data_{gender}_{age_group}_{visit}.csv"
+                    feature_importances_file = Path(CLASSIFICATION_PATH) / f"{classifier}/feature_importance_data_{gender}_{age_group}_{visit}.csv"
                     if Path.exists(feature_importances_file) == False:
                         print(f"file {feature_importances_file} does not exist")
                         continue;
@@ -57,7 +56,11 @@ def main():
                     feature_importances = feature_importances.sort_values(by='abs_importance', ascending=False).head(
                         n_top_features)
 
-                    feature_importances = feature_importances.merge(symbol_ensembl_mapping, left_index=True, right_index=True)
+                    if 'gene_symbol' not in feature_importances.columns:
+                        symbol_ensembl_mapping = ppmi_ad_subset.varm['symbol_ensembl_mapping']
+                        feature_importances = feature_importances.merge(symbol_ensembl_mapping, left_index=True,
+                                                                        right_index=True)
+
                     ranked_genes = feature_importances.set_index('gene_symbol')['abs_importance'].sort_values(ascending=False)
                     ranked_genes = ranked_genes[~ranked_genes.isna()]
                     ranked_genes = ranked_genes.sort_values(ascending=False, key=abs)
@@ -68,10 +71,10 @@ def main():
                                      gene_sets=gene_sets,
                                      organism='human')
                     enr_results_sorted = enr.results.sort_values(by='Adjusted P-value', ascending=True)
-                    enr_results_sorted.to_csv(f"{GSEA_ML_PATH}/enr_ml_results_sorted_{gender}_{visit}_{age_group}.csv")
+                    enr_results_sorted.to_csv(f"{GSEA_ML_PATH}/{classifier}_enr_ml_results_sorted_{gender}_{visit}_{age_group}.csv")
 
                     if debug:
-                        print(f"{classificator}_{age_group}_{gender}_{visit} = {feature_importances.shape}")
+                        print(f"{classifier}_{age_group}_{gender}_{visit} = {feature_importances.shape}")
                         min_abs_importance = feature_importances['abs_importance'].min()
                         max_abs_importance = feature_importances['abs_importance'].max()
                         print(f"Min abs_importance: {min_abs_importance}, Max abs_importance: {max_abs_importance}")

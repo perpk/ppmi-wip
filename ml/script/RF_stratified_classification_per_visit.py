@@ -2,12 +2,10 @@ import warnings
 from typing import Final
 
 import anndata as ad
-from feature_importance_calcs import calculate_stratified_importances
 from common_ml import test_classifier, run_10x_fold_validation, plot_results
 import pandas as pd
 import joblib
 import os
-from sklearn.metrics import (roc_auc_score, average_precision_score, classification_report)
 from sklearn.exceptions import FitFailedWarning
 from imblearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler

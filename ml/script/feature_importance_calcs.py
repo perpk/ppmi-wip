@@ -84,8 +84,8 @@ def filter_data_by_variation(anndata_object, anndata_layer, target_col, target_v
     return X_scaled, y, selected_genes
 
 
-def calculate_stratified_importances(anndata_obj_subset, case_diagnosis, n_top_genes=20000):
-    X_scaled, y, selected_genes = filter_data_by_variation(anndata_obj_subset, 'counts_log2', 'Diagnosis',
+def calculate_stratified_importances(anndata_obj_subset, case_diagnosis, n_top_genes=20000, anndata_layer='counts_log2'):
+    X_scaled, y, selected_genes = filter_data_by_variation(anndata_obj_subset, anndata_layer, 'Diagnosis',
                                                            case_diagnosis)
     print(f"n_top_genes: {n_top_genes}")
     print("1. Anova")

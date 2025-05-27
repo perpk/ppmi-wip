@@ -15,8 +15,10 @@ def get_common_genes_across_visits(filtered_dfs: dict, min_visits: int = 2) -> p
                 for v in filtered_dfs.keys():
                     genes_per_visit[gene][v] = False
                     genes_per_visit[gene][f"{v}_log2FC"] = None
+                    genes_per_visit[gene][f"{v}_padj"] = None
             genes_per_visit[gene][visit] = True
             genes_per_visit[gene][f"{visit}_log2FC"] = row['log2FoldChange']
+            genes_per_visit[gene][f"{visit}_padj"] = row['padj']
 
     genes_df = pd.DataFrame.from_dict(genes_per_visit.values())
 

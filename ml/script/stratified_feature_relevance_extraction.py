@@ -2,11 +2,11 @@ from pathlib import Path
 from typing import Final
 
 import pandas as pd
-import numpy as np
 import joblib
 import matplotlib.pyplot as plt
 from joblib import Parallel, delayed
 import scipy.sparse
+import anndata as ad
 
 PATH: Final = "/Users/kpax/Documents/aep/study/MSC/lab/PPMI_Project_133_RNASeq/classification/"
 
@@ -214,7 +214,7 @@ def plot_feature_importance(importance_df, output, model_type, top_n=20):
         # Show direction with color
         colors = ['red' if x < 0 else 'green' for x in importance_df['importance'].head(top_n)]
         importance_df.head(top_n).plot.bar(
-            x='feature',
+            x='gene_symbol',
             y='importance',
             color=colors,
             title=f'Feature Importance ({model_type.upper()}) - Direction Matters',
@@ -222,7 +222,7 @@ def plot_feature_importance(importance_df, output, model_type, top_n=20):
         )
     else:  # rf, xgboost
         importance_df.head(top_n).plot.bar(
-            x='feature',
+            x='gene_symbol',
             y='importance',
             title=f'Feature Importance ({model_type.upper()})',
             ax=plt.gca()
@@ -238,9 +238,10 @@ def main():
     visits = ['BL', 'V02', 'V04', 'V06', 'V08']
     age_groups = ['30-50', '50-70', '70-80', '>80']
     genders = ['Male', 'Female']
-    ml_paths = ['SVM2'] #('RF2', 'LR2', 'XGBOOST2', 'SVM2')
-    model_ids = ['svm'] #('rf', 'lr', 'xgb', 'svm')
-
+    ml_paths = ['SVM2']#['RF2', 'LR2', 'XGBOOST2', 'SVM2']
+    model_ids = ['svm']#['rf', 'lr', 'xgb', 'svm']
+    ppmi_ad = ad.read_h5ad("/Users/kpax/Documents/aep/study/MSC/lab/PPMI_Project_133_RNASeq/ppmi_adata.h5ad")
+    symbol_ensembl_mapping = ppmi_ad.varm['symbol_ensembl_mapping']
     for gender in genders:
         for age_group in age_groups:
             for visit in visits:
@@ -251,6 +252,14 @@ def main():
                         print(f"Model not found: {model_path}")
                         continue
                     importance_df, _ = extract_feature_importance(model_path, model_id)
+
+                    importance_df = importance_df.merge(
+                        symbol_ensembl_mapping[['gene_symbol']],
+                        left_on='feature',
+                        right_index=True,
+                        how='left'
+                    )
+                    # importance_df.drop(columns='index', inplace=True)
                     importance_df.to_csv(f"{PATH}{ml_path}/feature_importance_data_{gender}_{age_group}_{visit}.csv")
                     plot_feature_importance(importance_df, f"{PATH}{ml_path}/feature_importance_plot_{gender}_{age_group}_{visit}.png", model_id)
 

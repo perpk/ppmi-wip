@@ -14,7 +14,7 @@ import joblib
 import os
 from sklearn.exceptions import FitFailedWarning
 
-PATH: Final = "/Users/kpax/Documents/aep/study/MSC/lab/PPMI_Project_133_RNASeq/classification/SVM2/"
+PATH: Final = "/Users/kpax/Documents/aep/study/MSC/lab/PPMI_Project_133_RNASeq/classification/SVM2/unified_visits/unified_"
 CLASSIFICATION_PATH: Final = "/Users/kpax/Documents/aep/study/MSC/lab/PPMI_Project_133_RNASeq/classification/"
 
 def train_svm(anndata_obj_subset, stratum, test_size=0.2, random_state=42, min_samples=5):
@@ -95,7 +95,6 @@ def train_svm(anndata_obj_subset, stratum, test_size=0.2, random_state=42, min_s
 def main():
     ppmi_ad = ad.read_h5ad("/Users/kpax/Documents/aep/study/MSC/lab/PPMI_Project_133_RNASeq/ppmi_adata.h5ad")
 
-    visits = ['BL', 'V02', 'V04', 'V06', 'V08']
     age_groups = ['30-50', '50-70', '70-80', '>80']
     genders = ['Male', 'Female']
 
@@ -105,29 +104,27 @@ def main():
             with open(result_file, 'w') as f:
                 f.write(f"Results for Age Group: {age_group}, Gender: {gender}\n\n")
 
-            for visit in visits:
-                print(f"Visit: {visit}, Age Group: {age_group}, Gender: {gender}")
-                mask = ((ppmi_ad.obs['Age_Group'] == age_group) &
-                        (ppmi_ad.obs['Gender'] == gender) &
-                        (ppmi_ad.obs['Diagnosis'].isin(['PD', 'Control'])) &
-                        (ppmi_ad.obs['Visit'] == visit))
-                ppmi_ad_subset = ppmi_ad[mask]
-                common_genes = pd.read_csv(CLASSIFICATION_PATH + f"common_genes_{gender}_{age_group}_{visit}.csv", index_col=0)
-                ppmi_ad_subset = ppmi_ad_subset[:, ppmi_ad_subset.var.index.isin(common_genes.index.tolist())]
-                result = train_svm(ppmi_ad_subset, f"{gender}_{age_group}_{visit}")
-                if result is None:
-                    print(f"Failed to train SVM for {visit} - skipping")
-                    continue
-                best_svm, X_test, y_test, svm_pipeline, X, y = result
+            print(f"Age Group: {age_group}, Gender: {gender}")
+            mask = ((ppmi_ad.obs['Age_Group'] == age_group) &
+                    (ppmi_ad.obs['Gender'] == gender) &
+                    (ppmi_ad.obs['Diagnosis'].isin(['PD', 'Control'])))
+            ppmi_ad_subset = ppmi_ad[mask]
+            common_genes = pd.read_csv(CLASSIFICATION_PATH + f"common_union_visit_genes_{gender}_{age_group}.csv", index_col=0)
+            ppmi_ad_subset = ppmi_ad_subset[:, ppmi_ad_subset.var.index.isin(common_genes.index.tolist())]
+            result = train_svm(ppmi_ad_subset, f"{gender}_{age_group}")
+            if result is None:
+                print(f"Failed to train SVM for {age_group} - skipping")
+                continue
+            best_svm, X_test, y_test, svm_pipeline, X, y = result
 
-                with open(result_file, 'a') as f:
-                    f.write(f"Visit: {visit}\n")
-                y_proba, y_pred = test_classifier(best_svm, X_test, y_test, result_file)
-                run_10x_fold_validation(svm_pipeline, X, y, result_file)
-                plot = plot_results(y_test, y_proba, y_pred)
-                plot.savefig(PATH + f"results_{gender}_{age_group}_{visit}.png")
-                plot.clf()
-                plot.close()
+            with open(result_file, 'a') as f:
+                f.write(f"Visit: {age_group}\n")
+            y_proba, y_pred = test_classifier(best_svm, X_test, y_test, result_file)
+            run_10x_fold_validation(svm_pipeline, X, y, result_file)
+            plot = plot_results(y_test, y_proba, y_pred)
+            plot.savefig(PATH + f"results_{gender}_{age_group}.png")
+            plot.clf()
+            plot.close()
 
 
 if __name__ == '__main__':
