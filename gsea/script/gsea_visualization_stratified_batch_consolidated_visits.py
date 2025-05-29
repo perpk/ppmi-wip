@@ -93,51 +93,63 @@ def generate_gene_set_heatmaps(df: pd.DataFrame, filename_prefix, pval_threshold
         plt.savefig(f"{RESULTS_PATH}/{filename_prefix}_{gene_set}_heatmap.png", dpi=300, bbox_inches='tight')
         plt.close()
 
+
+def find_and_save_common_terms_across_groups(gsea_dfs: dict, output_file: str):
+    # Create a dictionary to store common terms
+    terms_data = defaultdict(lambda: defaultdict(dict))
+
+    # Iterate through each gender and age group
+    for (gender, age_group), df in gsea_dfs.items():
+        for _, row in df.iterrows():
+            term = row['Term']
+            p_value = row['Adjusted P-value']
+            terms_data[term][(gender, age_group)] = p_value
+
+    # Filter common terms across all groups
+    common_terms = [term for term, groups in terms_data.items() if len(groups) == len(gsea_dfs)]
+    common_data = []
+
+    for term in common_terms:
+        row = {'Term': term}
+        for (gender, age_group), p_value in terms_data[term].items():
+            row[f"{gender}_{age_group}"] = p_value
+        common_data.append(row)
+
+    # Save results to CSV
+    common_df = pd.DataFrame(common_data)
+    common_df.to_csv(output_file, index=False)
+
+
 def main():
     filename_pattern = "enr_results_sorted_consoVisits"
     genders = ["Male", "Female"]
     age_groups = ["30-50", "50-70", "70-80", ">80"]
 
-    gene_set_counts = defaultdict(lambda: defaultdict(int))
+    # for gender in genders:
+    #     for age_group in age_groups:
+    #         print(f"Processing {gender} {age_group}")
+    #         filename = f"{GSEA_PATH}/{filename_pattern}_{gender}_{age_group}.csv"
+    #         gsea_df = pd.read_csv(filename)
+    #         gsea_df_filtered = gsea_df[gsea_df["Adjusted P-value"] < 0.05]
+    #         generate_gene_set_heatmaps(gsea_df_filtered, f"gsea_results_{gender}_{age_group}")
 
+    # Collect GSEA DataFrames for all groups
+    gsea_dfs = {}
     for gender in genders:
         for age_group in age_groups:
-            print(f"Processing {gender} {age_group}")
             filename = f"{GSEA_PATH}/{filename_pattern}_{gender}_{age_group}.csv"
-            gsea_df = pd.read_csv(filename)
-            gsea_df_filtered = gsea_df[gsea_df["Adjusted P-value"] < 0.05]
-            # generate_gene_set_heatmaps(gsea_df_filtered, f"gsea_results_{gender}_{age_group}")
+            gsea_dfs[(gender, age_group)] = pd.read_csv(filename)
 
-            for gene_set in gsea_df_filtered["Gene_set"].unique():
-                gene_set_counts[gene_set][(gender, age_group)] += 1
+    # Process each gene set and find common terms
+    for gene_set in GENE_SETS:
+        print(f"Finding common terms for {gene_set}")
+        filtered_dfs = {
+            (gender, age_group): df[df['Gene_set'].str.contains(gene_set, case=False, na=False)]
+            for (gender, age_group), df in gsea_dfs.items()
+        }
+        output_file = f"{RESULTS_PATH}/common_terms_{gene_set}.csv"
+        find_and_save_common_terms_across_groups(filtered_dfs, output_file)
 
-    heatmap_data = pd.DataFrame.from_dict(gene_set_counts, orient='index').fillna(0)
-    for gender in genders:
-        # Filter columns for the current gender
-        gender_data = heatmap_data[[col for col in heatmap_data.columns if col[0] == gender]]
-
-        # Rename columns to show only age groups (remove gender prefix)
-        gender_data.columns = [age_group for (g, age_group) in gender_data.columns]
-
-        # Transpose to get age groups on y-axis
-        gender_data = gender_data.T
-
-        # Plot
-        plt.figure(figsize=(12, 6))
-        sns.heatmap(
-            gender_data,
-            cmap="YlOrRd",
-            fmt="g",
-            linewidths=0.5,
-            cbar_kws={"label": "Number of Significant Findings"},
-        )
-        plt.title(f"Gene Set Enrichment Findings: {gender}", fontsize=14)
-        plt.xlabel("Gene Set")
-        plt.ylabel("Age Group")
-        plt.xticks(rotation=45, ha="right")
-        plt.tight_layout()
-        plt.savefig(f"{RESULTS_PATH}/gene_set_heatmap_{gender}.png", dpi=300)
-        plt.close()
 
 if __name__ == "__main__":
     main()
