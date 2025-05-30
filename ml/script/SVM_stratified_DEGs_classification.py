@@ -1,0 +1,130 @@
+import warnings
+from typing import Final
+
+import anndata as ad
+from common_ml import test_classifier, run_10x_fold_validation, plot_results
+import pandas as pd
+from sklearn.model_selection import GroupShuffleSplit
+from sklearn.model_selection import GridSearchCV
+from imblearn.over_sampling import SMOTE
+from imblearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.svm import SVC
+import joblib
+import os
+from sklearn.exceptions import FitFailedWarning
+
+PATH: Final = "/Users/kpax/Documents/aep/study/MSC/lab/PPMI_Project_133_RNASeq/data/ml/classification/SVM/deg_classification/"
+DEG_SOURCE_PATH: Final = "/Users/kpax/Documents/aep/study/MSC/lab/PPMI_Project_133_RNASeq/data/deg_consolidated_visits/"
+
+def train_svm(anndata_obj_subset, stratum, test_size=0.2, random_state=42, min_samples=5):
+    print("Training SVM Model")
+    splitter = GroupShuffleSplit(n_splits=1, test_size=test_size, random_state=random_state)
+    X = pd.DataFrame(anndata_obj_subset.layers['counts_log2'], columns=anndata_obj_subset.var_names)
+    y = (anndata_obj_subset.obs['Diagnosis'] == 'PD').astype(int)
+
+    class_counts = y.value_counts()
+    print(f"Class distribution: {class_counts.to_dict()}")
+
+    if min(class_counts) < 2:
+        print(f"Warning: Insufficient samples in stratum {stratum} - skipping")
+        return None
+
+    n_test = max(1, int(len(X) * test_size))
+    if n_test < 2:
+        print("Warning: Too few samples in stratum - skipping")
+        return None
+
+    train_idx, test_idx = next(splitter.split(X, y, groups=anndata_obj_subset.obs['Patient']))
+    X_train, X_test = X.iloc[train_idx], X.iloc[test_idx]
+    y_train, y_test = y.iloc[train_idx], y.iloc[test_idx]
+
+    train_class_counts = y_train.value_counts()
+    use_smote = min(train_class_counts) >= min_samples
+
+    steps = [
+        ('scaler', StandardScaler())
+    ]
+    if use_smote:
+        steps.append(('smote', SMOTE(
+            random_state=random_state,
+            k_neighbors=min(3, min(train_class_counts) - 1))))
+    else:
+        print(f"Warning: Not using SMOTE for {stratum} - smallest class has {min(train_class_counts)} samples")
+
+    steps.append(('svm', SVC(probability=True, random_state=42)))
+
+    svm_pipeline = Pipeline(steps)
+
+    param_grid = {
+        'svm__C': [0.1, 1, 10],
+        'svm__gamma': ['scale', 'auto', 0.1],
+        'svm__kernel': ['linear', 'rbf']
+    }
+
+    if use_smote:
+        param_grid['smote__k_neighbors'] = [
+            min(3, min(train_class_counts) - 1),
+            min(5, min(train_class_counts) - 1),
+        ]
+
+    try:
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", FitFailedWarning)
+
+            grid_search = GridSearchCV(estimator=svm_pipeline, param_grid=param_grid, cv=10, scoring='roc_auc', n_jobs=-1,
+                                       verbose=1)
+            grid_search.fit(X_train, y_train)
+            best_svm = grid_search.best_estimator_
+            best_svm.fit(X_train, y_train)
+            model_path = os.path.join(PATH + f"model_{stratum}.joblib")
+            joblib.dump({
+                'model': best_svm,
+                'X_test': X_test,
+                'y_test': y_test,
+                'features': X.columns.tolist()
+            }, model_path)
+    except Exception as e:
+        print(f"Failed to train model for {stratum}: {str(e)}")
+        return None
+
+    return best_svm, X_test, y_test, svm_pipeline, X, y
+
+def main():
+    ppmi_ad = ad.read_h5ad("/Users/kpax/Documents/aep/study/MSC/lab/PPMI_Project_133_RNASeq/ppmi_adata.h5ad")
+
+    age_groups = ['30-50', '50-70', '70-80', '>80']
+    genders = ['Male', 'Female']
+
+    for gender in genders:
+        for age_group in age_groups:
+            result_file = PATH + f"results_{gender}_{age_group}.txt"
+            with open(result_file, 'w') as f:
+                f.write(f"Results for Age Group: {age_group}, Gender: {gender}\n\n")
+
+            print(f"Age Group: {age_group}, Gender: {gender}")
+            mask = ((ppmi_ad.obs['Age_Group'] == age_group) &
+                    (ppmi_ad.obs['Gender'] == gender) &
+                    (ppmi_ad.obs['Diagnosis'].isin(['PD', 'Control'])))
+            ppmi_ad_subset = ppmi_ad[mask]
+            degs = pd.read_csv(DEG_SOURCE_PATH + f"DEGs_stratified_consoVisits_{gender}_{age_group}.csv", index_col=0)
+            sign_degs = degs[(degs['log2FoldChange'].abs() > 0.5) & (degs['padj'] < 0.05)]
+            ppmi_ad_subset = ppmi_ad_subset[:, ppmi_ad_subset.var.index.isin(sign_degs.index.tolist())]
+            result = train_svm(ppmi_ad_subset, f"{gender}_{age_group}")
+            if result is None:
+                print(f"Failed to train SVM for {age_group} - skipping")
+                continue
+            best_svm, X_test, y_test, svm_pipeline, X, y = result
+
+            with open(result_file, 'a') as f:
+                f.write(f"Visit: {age_group}\n")
+            y_proba, y_pred = test_classifier(best_svm, X_test, y_test, result_file)
+            # run_10x_fold_validation(svm_pipeline, X, y, result_file)
+            plot = plot_results(y_test, y_proba, y_pred)
+            plot.savefig(PATH + f"results_{gender}_{age_group}.png")
+            plot.clf()
+            plot.close()
+
+
+if __name__ == '__main__':
+    main()
