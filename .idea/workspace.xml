@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa1cc71e-64b5-43ed-a4f9-0cc45af01969" name="Changes" comment="Classification based on DEGs">
-      <change afterPath="$PROJECT_DIR$/deg/script/extract_common_genes_from_age_groups.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/deg/script/extract_stat_sign_genes_thesis.py" afterDir="false" />
+    <list default="true" id="fa1cc71e-64b5-43ed-a4f9-0cc45af01969" name="Changes" comment="Helper scripts for information extraction">
+      <change afterPath="$PROJECT_DIR$/ml/script/LR_shap_analysis_poc.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ml/script/ML_classifiers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ml/script/ML_stratified_central.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ml/script/ML_training.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml/script/common_ml.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml/script/common_ml.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,60 +62,62 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.LR_stratified_DEGs_classification.executor": "Run",
-    "Python.LR_stratified_classification_per_visit.executor": "Run",
-    "Python.LR_stratified_feature_relevance_from_model_example.executor": "Run",
-    "Python.LR_stratified_shap_analysis_example.executor": "Run",
-    "Python.LR_stratified_unified_features_visit_classification.executor": "Run",
-    "Python.RF_stratified_DEGs_classification.executor": "Run",
-    "Python.RF_stratified_classification_per_visit.executor": "Run",
-    "Python.RF_stratified_unified_features_visit_classification.executor": "Run",
-    "Python.SVM_stratified_DEGs_classification.executor": "Run",
-    "Python.SVM_stratified_classification_per_visit.executor": "Run",
-    "Python.SVM_stratified_unified_features_visit_classification.executor": "Run",
-    "Python.XGBoost_stratified_DEGs_classification.executor": "Run",
-    "Python.XGBoost_stratified_classification_per_visit.executor": "Run",
-    "Python.anndata_to_csv_for_dgea.executor": "Run",
-    "Python.compare_borda_simple_intersection.executor": "Run",
-    "Python.consolidate_ppmi_counts_with_metadata.executor": "Run",
-    "Python.create_and_unify_feature_importance_sources_visits.executor": "Run",
-    "Python.create_feature_importance_sources.executor": "Run",
-    "Python.cyto_data_prep_batch.executor": "Run",
-    "Python.dataset_consolidation.executor": "Run",
-    "Python.extract_common_genes_from_age_groups.executor": "Run",
-    "Python.extract_stat_sign_genes_thesis.executor": "Debug",
-    "Python.feature_importances_stratified.executor": "Run",
-    "Python.gsea_ml_feature_importances_batch.executor": "Run",
-    "Python.gsea_reconcilation_batch.executor": "Run",
-    "Python.gsea_stratified_batch.executor": "Run",
-    "Python.gsea_stratified_batch_consolidated_visits.executor": "Run",
-    "Python.gsea_visualisations_batch.executor": "Run",
-    "Python.gsea_visualization_stratified_batch_consolidated_visits.executor": "Run",
-    "Python.predict_gse_160299.executor": "Run",
-    "Python.process_degs.executor": "Run",
-    "Python.process_degs_consolidated_visits.executor": "Run",
-    "Python.read_ppmi_counts.executor": "Run",
-    "Python.scap-pad.executor": "Debug",
-    "Python.stratified_classification_per_visit.executor": "Run",
-    "Python.stratified_feature_relevance_extraction.executor": "Run",
-    "Python.tpm_counts_consolidation.executor": "Run",
-    "Python.tpm_counts_filter_LM22.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/kpax/Documents/aep/study/MSC/lab/ppmi-wip/ml/script",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.intellij.jupyter.core.jupyter.connections.configuration.JupyterServerConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.LR_shap_analysis_poc.executor&quot;: &quot;Run&quot;,
+    &quot;Python.LR_stratified_DEGs_classification.executor&quot;: &quot;Run&quot;,
+    &quot;Python.LR_stratified_classification_per_visit.executor&quot;: &quot;Run&quot;,
+    &quot;Python.LR_stratified_feature_relevance_from_model_example.executor&quot;: &quot;Run&quot;,
+    &quot;Python.LR_stratified_shap_analysis_example.executor&quot;: &quot;Run&quot;,
+    &quot;Python.LR_stratified_unified_features_visit_classification.executor&quot;: &quot;Run&quot;,
+    &quot;Python.ML_stratified_central.executor&quot;: &quot;Run&quot;,
+    &quot;Python.RF_stratified_DEGs_classification.executor&quot;: &quot;Run&quot;,
+    &quot;Python.RF_stratified_classification_per_visit.executor&quot;: &quot;Run&quot;,
+    &quot;Python.RF_stratified_unified_features_visit_classification.executor&quot;: &quot;Run&quot;,
+    &quot;Python.SVM_stratified_DEGs_classification.executor&quot;: &quot;Run&quot;,
+    &quot;Python.SVM_stratified_classification_per_visit.executor&quot;: &quot;Run&quot;,
+    &quot;Python.SVM_stratified_unified_features_visit_classification.executor&quot;: &quot;Run&quot;,
+    &quot;Python.XGBoost_stratified_DEGs_classification.executor&quot;: &quot;Run&quot;,
+    &quot;Python.XGBoost_stratified_classification_per_visit.executor&quot;: &quot;Run&quot;,
+    &quot;Python.anndata_to_csv_for_dgea.executor&quot;: &quot;Run&quot;,
+    &quot;Python.compare_borda_simple_intersection.executor&quot;: &quot;Run&quot;,
+    &quot;Python.consolidate_ppmi_counts_with_metadata.executor&quot;: &quot;Run&quot;,
+    &quot;Python.create_and_unify_feature_importance_sources_visits.executor&quot;: &quot;Run&quot;,
+    &quot;Python.create_feature_importance_sources.executor&quot;: &quot;Run&quot;,
+    &quot;Python.cyto_data_prep_batch.executor&quot;: &quot;Run&quot;,
+    &quot;Python.dataset_consolidation.executor&quot;: &quot;Run&quot;,
+    &quot;Python.extract_common_genes_from_age_groups.executor&quot;: &quot;Run&quot;,
+    &quot;Python.extract_stat_sign_genes_thesis.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.feature_importances_stratified.executor&quot;: &quot;Run&quot;,
+    &quot;Python.gsea_ml_feature_importances_batch.executor&quot;: &quot;Run&quot;,
+    &quot;Python.gsea_reconcilation_batch.executor&quot;: &quot;Run&quot;,
+    &quot;Python.gsea_stratified_batch.executor&quot;: &quot;Run&quot;,
+    &quot;Python.gsea_stratified_batch_consolidated_visits.executor&quot;: &quot;Run&quot;,
+    &quot;Python.gsea_visualisations_batch.executor&quot;: &quot;Run&quot;,
+    &quot;Python.gsea_visualization_stratified_batch_consolidated_visits.executor&quot;: &quot;Run&quot;,
+    &quot;Python.predict_gse_160299.executor&quot;: &quot;Run&quot;,
+    &quot;Python.process_degs.executor&quot;: &quot;Run&quot;,
+    &quot;Python.process_degs_consolidated_visits.executor&quot;: &quot;Run&quot;,
+    &quot;Python.read_ppmi_counts.executor&quot;: &quot;Run&quot;,
+    &quot;Python.scap-pad.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.stratified_classification_per_visit.executor&quot;: &quot;Run&quot;,
+    &quot;Python.stratified_feature_relevance_extraction.executor&quot;: &quot;Run&quot;,
+    &quot;Python.tpm_counts_consolidation.executor&quot;: &quot;Run&quot;,
+    &quot;Python.tpm_counts_filter_LM22.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/kpax/Documents/aep/study/MSC/lab/ppmi-wip/ml/script&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.intellij.jupyter.core.jupyter.connections.configuration.JupyterServerConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
       <console-settings module-name="ppmi-wip" is-module-sdk="true">
@@ -134,7 +139,31 @@
       <recent name="$PROJECT_DIR$/gsea" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.extract_common_genes_from_age_groups">
+  <component name="RunManager" selected="Python.ML_stratified_central">
+    <configuration name="LR_shap_analysis_poc" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="ppmi-wip" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="SCIPY_ARRAY_API" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ml/script" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ml/script/LR_shap_analysis_poc.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="LR_stratified_DEGs_classification" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ppmi-wip" />
       <option name="ENV_FILES" value="" />
@@ -175,6 +204,30 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ml/script/LR_stratified_feature_relevance_from_model_example.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ML_stratified_central" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="ppmi-wip" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="SCIPY_ARRAY_API" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/ml/script" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ml/script/ML_stratified_central.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -351,29 +404,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="cyto_data_prep_batch" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="ppmi-wip" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/cytoscape" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/cytoscape/cyto_data_prep_batch.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="extract_common_genes_from_age_groups" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ppmi-wip" />
       <option name="ENV_FILES" value="" />
@@ -468,6 +498,7 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.ML_stratified_central" />
       <item itemvalue="Python.RF_stratified_DEGs_classification" />
       <item itemvalue="Python.SVM_stratified_DEGs_classification" />
       <item itemvalue="Python.XGBoost_stratified_DEGs_classification" />
@@ -477,19 +508,19 @@
       <item itemvalue="Python.SVM_stratified_classification_per_visit" />
       <item itemvalue="Python.XGBoost_stratified_classification_per_visit" />
       <item itemvalue="Python.stratified_feature_relevance_extraction" />
+      <item itemvalue="Python.LR_shap_analysis_poc" />
       <item itemvalue="Python.extract_common_genes_from_age_groups" />
       <item itemvalue="Python.extract_stat_sign_genes_thesis" />
       <item itemvalue="Python.LR_stratified_DEGs_classification" />
-      <item itemvalue="Python.cyto_data_prep_batch" />
       <item itemvalue="Python.gsea_visualization_stratified_batch_consolidated_visits" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.LR_shap_analysis_poc" />
+        <item itemvalue="Python.LR_stratified_DEGs_classification" />
         <item itemvalue="Python.extract_common_genes_from_age_groups" />
         <item itemvalue="Python.extract_stat_sign_genes_thesis" />
-        <item itemvalue="Python.LR_stratified_DEGs_classification" />
         <item itemvalue="Python.gsea_visualization_stratified_batch_consolidated_visits" />
-        <item itemvalue="Python.cyto_data_prep_batch" />
       </list>
     </recent_temporary>
   </component>
@@ -537,7 +568,9 @@
       <workItem from="1748012347777" duration="42739000" />
       <workItem from="1748193282833" duration="46223000" />
       <workItem from="1748371709029" duration="13911000" />
-      <workItem from="1748527976186" duration="20697000" />
+      <workItem from="1748527976186" duration="38977000" />
+      <workItem from="1748798547419" duration="4861000" />
+      <workItem from="1748811775344" duration="839000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -859,7 +892,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748643159071</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Helper scripts for information extraction">
+      <option name="closed" value="true" />
+      <created>1748706040923</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1748706040923</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -870,7 +911,6 @@
       <path value="$PROJECT_DIR$/R-sources/ppmi-stratified" />
       <path value="$PROJECT_DIR$/R-sources/ppmi-wip.deconvolution.granulator" />
     </ignored-roots>
-    <MESSAGE value="t-SNE per Gender incl. Prodromal Cases" />
     <MESSAGE value="Rmd's and results for stratified DGE" />
     <MESSAGE value="Fixes for accidentally deleted code" />
     <MESSAGE value="DGE Plotted for stratified groups" />
@@ -895,7 +935,8 @@
     <MESSAGE value="Backup Commit." />
     <MESSAGE value="WIP &amp; Backup of progress" />
     <MESSAGE value="Classification based on DEGs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Classification based on DEGs" />
+    <MESSAGE value="Helper scripts for information extraction" />
+    <option name="LAST_COMMIT_MESSAGE" value="Helper scripts for information extraction" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -955,6 +996,16 @@
           <line>26</line>
           <option name="timeStamp" value="73" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/ml/script/ML_training.py</url>
+          <line>54</line>
+          <option name="timeStamp" value="84" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/ml/script/ML_training.py</url>
+          <line>70</line>
+          <option name="timeStamp" value="85" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-defaults>
         <breakpoint type="python-line" />
@@ -980,6 +1031,7 @@
     <SUITE FILE_PATH="coverage/ppmi_wip$SVM_stratified_DEGs_classification.coverage" NAME="SVM_stratified_DEGs_classification Coverage Results" MODIFIED="1748620578264" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
     <SUITE FILE_PATH="coverage/ppmi_wip$stratified_classification_per_visit.coverage" NAME="stratified_classification_per_visit Coverage Results" MODIFIED="1746608114251" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
     <SUITE FILE_PATH="coverage/ppmi_wip$tpm_counts_filter_LM22.coverage" NAME="tpm_counts_filter_LM22 Coverage Results" MODIFIED="1748170983596" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
+    <SUITE FILE_PATH="coverage/ppmi_wip$ML_stratified_central.coverage" NAME="ML_stratified_central Coverage Results" MODIFIED="1748811853657" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
     <SUITE FILE_PATH="coverage/ppmi_wip$compare_borda_simple_intersection.coverage" NAME="compare_borda_simple_intersection Coverage Results" MODIFIED="1746471092227" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
     <SUITE FILE_PATH="coverage/ppmi_wip$scap_pad.coverage" NAME="scap-pad Coverage Results" MODIFIED="1747347431469" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
     <SUITE FILE_PATH="coverage/ppmi_wip$stratified_feature_relevance_extraction.coverage" NAME="stratified_feature_relevance_extraction Coverage Results" MODIFIED="1747550542967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
@@ -990,6 +1042,7 @@
     <SUITE FILE_PATH="coverage/ppmi_wip$RF_stratified_unified_features_visit_classification.coverage" NAME="RF_stratified_unified_features_visit_classification Coverage Results" MODIFIED="1747677198038" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
     <SUITE FILE_PATH="coverage/ppmi_wip$read_ppmi_counts.coverage" NAME="read_ppmi_counts Coverage Results" MODIFIED="1748201679736" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
     <SUITE FILE_PATH="coverage/ppmi_wip$anndata_to_csv_for_dgea.coverage" NAME="anndata_to_csv_for_dgea Coverage Results" MODIFIED="1748295169890" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
+    <SUITE FILE_PATH="coverage/ppmi_wip$LR_shap_analysis_poc.coverage" NAME="LR_shap_analysis_poc Coverage Results" MODIFIED="1748794604355" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
     <SUITE FILE_PATH="coverage/ppmi_wip$tpm_counts_consolidation.coverage" NAME="tpm_counts_consolidation Coverage Results" MODIFIED="1748168345421" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
     <SUITE FILE_PATH="coverage/ppmi_wip$create_feature_importance_sources.coverage" NAME="create_feature_importance_sources Coverage Results" MODIFIED="1748327895045" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
     <SUITE FILE_PATH="coverage/ppmi_wip$process_degs.coverage" NAME="process_degs Coverage Results" MODIFIED="1748325678413" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/deg/script" />
@@ -999,7 +1052,7 @@
     <SUITE FILE_PATH="coverage/ppmi_wip$predict_gse_160299.coverage" NAME="predict_gse_160299 Coverage Results" MODIFIED="1747345055964" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/gsea/script" />
     <SUITE FILE_PATH="coverage/ppmi_wip$gsea_stratified_batch_consolidated_visits.coverage" NAME="gsea_stratified_batch_consolidated_visits Coverage Results" MODIFIED="1748375542976" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/gsea/script" />
     <SUITE FILE_PATH="coverage/ppmi_wip$consolidate_ppmi_counts_with_metadata.coverage" NAME="consolidate_ppmi_counts_with_metadata Coverage Results" MODIFIED="1748206687367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
-    <SUITE FILE_PATH="coverage/ppmi_wip$LR_stratified_DEGs_classification.coverage" NAME="LR_stratified_DEGs_classification Coverage Results" MODIFIED="1748618733086" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
+    <SUITE FILE_PATH="coverage/ppmi_wip$LR_stratified_DEGs_classification.coverage" NAME="LR_stratified_DEGs_classification Coverage Results" MODIFIED="1748761785303" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
     <SUITE FILE_PATH="coverage/ppmi_wip$XGBoost_stratified_DEGs_classification.coverage" NAME="XGBoost_stratified_DEGs_classification Coverage Results" MODIFIED="1748636350729" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
     <SUITE FILE_PATH="coverage/ppmi_wip$dataset_consolidation.coverage" NAME="dataset_consolidation Coverage Results" MODIFIED="1748277377712" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
     <SUITE FILE_PATH="coverage/ppmi_wip$RF_stratified_DEGs_classification.coverage" NAME="RF_stratified_DEGs_classification Coverage Results" MODIFIED="1748622502030" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
