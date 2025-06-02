@@ -94,10 +94,12 @@ def train_classifier(anndata_obj_subset, stratum, classifier, results_path, use_
                 'model': best_estimator,
                 'X_test': X_test,
                 'y_test': y_test,
+                'X_train': X_train,
+                'y_train': y_train,
                 'features': X.columns.tolist()
             }, model_path)
     except Exception as e:
         print(f"Failed to train model for {stratum}: {str(e)}")
         return None
 
-    return best_estimator, X_test, y_test, pipeline, X, y
+    return best_estimator, X_test, y_test, pipeline, X, y, X_train
