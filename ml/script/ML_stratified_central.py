@@ -12,7 +12,7 @@ DEG_SOURCE_PATH: Final = "/Users/kpax/Documents/aep/study/MSC/lab/PPMI_Project_1
 def main():
     genders = ["Male", "Female"]
     age_groups = ["30-50", "50-70", "70-80"]
-    classifiers = ["XGBOOST"]#["LR", "SVM", "RF", "XGBOOST"]
+    classifiers = ["SVM", "RF"]#["LR", "SVM", "RF", "XGBOOST"]
     use_smote = False
     ppmi_ad = ad.read_h5ad("/Users/kpax/Documents/aep/study/MSC/lab/PPMI_Project_133_RNASeq/ppmi_adata.h5ad")
     symbol_ensembl_mapping = ppmi_ad.varm['symbol_ensembl_mapping']

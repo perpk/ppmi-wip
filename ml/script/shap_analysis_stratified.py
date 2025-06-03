@@ -18,7 +18,7 @@ def create_explainer(classifier, model, X_test_transformed, X_train_transformed)
     elif classifier == "SVM":
         return shap.KernelExplainer(
             model.decision_function,
-            background
+            background,
         )
     elif classifier == "RF":
         return shap.TreeExplainer(
@@ -109,9 +109,9 @@ def generate_shap_beeswarm(pipeline, X_test, X_train, features, symbol_mapping, 
 
 
 def main():
-    classifiers = ["XGBOOST"] #["LR", "SVM", "RF", "XGBOOST"]
-    genders = ['Male']#, 'Female']
-    age_groups = ['30-50']#, '70-80', '>80']
+    classifiers = ["SVM"] #["LR", "SVM", "RF", "XGBOOST"]
+    genders = ['Male']#['Male', 'Female']
+    age_groups = ['50-70']#['30-50', '50-70', '70-80']
     withSmote = False
     ppmi_ad = ad.read_h5ad("/Users/kpax/Documents/aep/study/MSC/lab/PPMI_Project_133_RNASeq/ppmi_adata.h5ad")
     symbol_ensembl_mapping = ppmi_ad.varm['symbol_ensembl_mapping']

@@ -27,7 +27,7 @@ param_grid_svm = {
 
 
 def create_svm_classifier(random_state):
-    return 'svm', SVC(probability=True, random_state=random_state)
+    return 'svm', SVC(probability=True, random_state=random_state, class_weight='balanced', C=1.0)
 
 
 param_grid_rf = {
@@ -40,14 +40,14 @@ param_grid_rf = {
 
 def create_random_forest_classifier(random_state):
     return ('rf', RandomForestClassifier(
-        random_state=random_state,
+        random_state=random_state, class_weight='balanced',
         n_jobs=-1))
 
 
 def create_xgboost_classifier(random_state, y):
     return ('xgb', xgb.XGBClassifier(
         objective='binary:logistic',
-        scale_pos_weight=np.sum(y == 0) / np.sum(y == 1),  # Handle imbalance
+        scale_pos_weight=np.sum(y == 0) / np.sum(y == 1),
         random_state=random_state,
         n_jobs=-1,
         eval_metric='auc'))

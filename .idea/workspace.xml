@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa1cc71e-64b5-43ed-a4f9-0cc45af01969" name="Changes" comment="ML Refactor to single script">
-      <change afterPath="$PROJECT_DIR$/ml/script/shap_analysis_stratified.py" afterDir="false" />
+    <list default="true" id="fa1cc71e-64b5-43ed-a4f9-0cc45af01969" name="Changes" comment="ML Shap - all classifiers + XGBoost on-the-spot shap analysis since joblib read throws segmentation fault.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml/script/ML_classifiers.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml/script/ML_classifiers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ml/script/ML_stratified_central.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml/script/ML_stratified_central.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ml/script/ML_training.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml/script/ML_training.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml/script/shap_analysis_stratified.py" beforeDir="false" afterPath="$PROJECT_DIR$/ml/script/shap_analysis_stratified.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +98,7 @@
     "Python.process_degs_consolidated_visits.executor": "Run",
     "Python.read_ppmi_counts.executor": "Run",
     "Python.scap-pad.executor": "Debug",
-    "Python.shap_analysis_stratified.executor": "Debug",
+    "Python.shap_analysis_stratified.executor": "Run",
     "Python.stratified_classification_per_visit.executor": "Run",
     "Python.stratified_feature_relevance_extraction.executor": "Run",
     "Python.tpm_counts_consolidation.executor": "Run",
@@ -138,7 +138,7 @@
       <recent name="$PROJECT_DIR$/gsea" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.ML_stratified_central">
+  <component name="RunManager" selected="Python.shap_analysis_stratified">
     <configuration name="LR_shap_analysis_poc" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ppmi-wip" />
       <option name="ENV_FILES" value="" />
@@ -595,7 +595,7 @@
       <workItem from="1748527976186" duration="38977000" />
       <workItem from="1748798547419" duration="4861000" />
       <workItem from="1748811775344" duration="1634000" />
-      <workItem from="1748845140824" duration="26117000" />
+      <workItem from="1748845140824" duration="33642000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -933,7 +933,15 @@
       <option name="project" value="LOCAL" />
       <updated>1748812688663</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="ML Shap - all classifiers + XGBoost on-the-spot shap analysis since joblib read throws segmentation fault.">
+      <option name="closed" value="true" />
+      <created>1748903837594</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1748903837594</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -944,7 +952,6 @@
       <path value="$PROJECT_DIR$/R-sources/ppmi-stratified" />
       <path value="$PROJECT_DIR$/R-sources/ppmi-wip.deconvolution.granulator" />
     </ignored-roots>
-    <MESSAGE value="Fixes for accidentally deleted code" />
     <MESSAGE value="DGE Plotted for stratified groups" />
     <MESSAGE value="WIP: Backup commit" />
     <MESSAGE value="WIP: Proper Volcano Plots" />
@@ -969,7 +976,8 @@
     <MESSAGE value="Classification based on DEGs" />
     <MESSAGE value="Helper scripts for information extraction" />
     <MESSAGE value="ML Refactor to single script" />
-    <option name="LAST_COMMIT_MESSAGE" value="ML Refactor to single script" />
+    <MESSAGE value="ML Shap - all classifiers + XGBoost on-the-spot shap analysis since joblib read throws segmentation fault." />
+    <option name="LAST_COMMIT_MESSAGE" value="ML Shap - all classifiers + XGBoost on-the-spot shap analysis since joblib read throws segmentation fault." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1049,6 +1057,16 @@
           <line>41</line>
           <option name="timeStamp" value="96" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/ml/script/common_ml.py</url>
+          <line>9</line>
+          <option name="timeStamp" value="97" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/ml/script/ML_training.py</url>
+          <line>33</line>
+          <option name="timeStamp" value="98" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-defaults>
         <breakpoint type="python-line" />
@@ -1063,7 +1081,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ppmi_wip$LR_stratified_unified_features_visit_classification.coverage" NAME="LR_stratified_unified_features_visit_classification Coverage Results" MODIFIED="1747680407047" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
     <SUITE FILE_PATH="coverage/ppmi_wip$XGBoost_stratified_classification_per_visit.coverage" NAME="XGBoost_stratified_classification_per_visit Coverage Results" MODIFIED="1746982216652" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
-    <SUITE FILE_PATH="coverage/ppmi_wip$shap_analysis_stratified.coverage" NAME="shap_analysis_stratified Coverage Results" MODIFIED="1748885251052" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
+    <SUITE FILE_PATH="coverage/ppmi_wip$shap_analysis_stratified.coverage" NAME="shap_analysis_stratified Coverage Results" MODIFIED="1748947155444" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
     <SUITE FILE_PATH="coverage/ppmi_wip$extract_common_genes_from_age_groups.coverage" NAME="extract_common_genes_from_age_groups Coverage Results" MODIFIED="1748694533162" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/deg/script" />
     <SUITE FILE_PATH="coverage/ppmi_wip$create_and_unify_feature_importance_sources_visits.coverage" NAME="create_and_unify_feature_importance_sources_visits Coverage Results" MODIFIED="1747663103256" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
     <SUITE FILE_PATH="coverage/ppmi_wip$SVM_stratified_unified_features_visit_classification.coverage" NAME="SVM_stratified_unified_features_visit_classification Coverage Results" MODIFIED="1747674244809" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
@@ -1075,7 +1093,7 @@
     <SUITE FILE_PATH="coverage/ppmi_wip$SVM_stratified_DEGs_classification.coverage" NAME="SVM_stratified_DEGs_classification Coverage Results" MODIFIED="1748620578264" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
     <SUITE FILE_PATH="coverage/ppmi_wip$stratified_classification_per_visit.coverage" NAME="stratified_classification_per_visit Coverage Results" MODIFIED="1746608114251" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
     <SUITE FILE_PATH="coverage/ppmi_wip$tpm_counts_filter_LM22.coverage" NAME="tpm_counts_filter_LM22 Coverage Results" MODIFIED="1748170983596" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/scripts" />
-    <SUITE FILE_PATH="coverage/ppmi_wip$ML_stratified_central.coverage" NAME="ML_stratified_central Coverage Results" MODIFIED="1748886526362" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
+    <SUITE FILE_PATH="coverage/ppmi_wip$ML_stratified_central.coverage" NAME="ML_stratified_central Coverage Results" MODIFIED="1748938102804" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
     <SUITE FILE_PATH="coverage/ppmi_wip$compare_borda_simple_intersection.coverage" NAME="compare_borda_simple_intersection Coverage Results" MODIFIED="1746471092227" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
     <SUITE FILE_PATH="coverage/ppmi_wip$scap_pad.coverage" NAME="scap-pad Coverage Results" MODIFIED="1747347431469" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
     <SUITE FILE_PATH="coverage/ppmi_wip$stratified_feature_relevance_extraction.coverage" NAME="stratified_feature_relevance_extraction Coverage Results" MODIFIED="1747550542967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/ml/script" />
