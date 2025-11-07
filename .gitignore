@@ -1,0 +1,12 @@
+.idea
+ppmi-conda-env/
+ppmi-env/
+venv/
+R-sources/ppmi-stratified/.Rproj.user/
+R-sources/ppmi-stratified/.DS_Store
+R-sources/ppmi-stratified/.RData*
+R-sources/ppmi-stratified/.Rhistory
+R-sources/ppmi-wip.deconvolution.granulator/.Rproj.user/
+R-sources/ppmi-wip.deconvolution.granulator/.DS_Store
+R-sources/ppmi-wip.deconvolution.granulator/.Rhistory
+
